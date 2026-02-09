@@ -1,0 +1,3952 @@
+[
+  {
+    "title": "Beautiful Mermaid",
+    "source": "stateDiagram-v2\n    direction LR\n    [*] --> Input\n    Input --> Parse: DSL\n    Parse --> Layout: AST\n    Layout --> SVG: Vector\n    Layout --> ASCII: Text\n    SVG --> Theme\n    ASCII --> Theme\n    Theme --> Output\n    Output --> [*]",
+    "layout": {
+      "width": 993,
+      "height": 176,
+      "nodes": [
+        {
+          "id": "_end",
+          "label": "",
+          "shape": "state-end",
+          "x": 893,
+          "y": 70,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "_start",
+          "label": "",
+          "shape": "state-start",
+          "x": 40,
+          "y": 70,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "ASCII",
+          "label": "ASCII",
+          "shape": "rounded",
+          "x": 563,
+          "y": 100,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "Input",
+          "label": "Input",
+          "shape": "rounded",
+          "x": 140,
+          "y": 70,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "Layout",
+          "label": "Layout",
+          "shape": "rounded",
+          "x": 406,
+          "y": 70,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "Output",
+          "label": "Output",
+          "shape": "rounded",
+          "x": 779,
+          "y": 70,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "Parse",
+          "label": "Parse",
+          "shape": "rounded",
+          "x": 273,
+          "y": 70,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "SVG",
+          "label": "SVG",
+          "shape": "rounded",
+          "x": 567,
+          "y": 40,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "Theme",
+          "label": "Theme",
+          "shape": "rounded",
+          "x": 671,
+          "y": 70,
+          "width": 68,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "_start",
+          "target": "Input",
+          "style": "solid",
+          "points": [
+            {
+              "x": 88,
+              "y": 88
+            },
+            {
+              "x": 140,
+              "y": 88
+            }
+          ]
+        },
+        {
+          "source": "ASCII",
+          "target": "Theme",
+          "style": "solid",
+          "points": [
+            {
+              "x": 631,
+              "y": 118
+            },
+            {
+              "x": 705,
+              "y": 118
+            },
+            {
+              "x": 705,
+              "y": 106
+            }
+          ]
+        },
+        {
+          "source": "Input",
+          "target": "Parse",
+          "label": "DSL",
+          "style": "solid",
+          "points": [
+            {
+              "x": 208,
+              "y": 88
+            },
+            {
+              "x": 273,
+              "y": 88
+            }
+          ]
+        },
+        {
+          "source": "Layout",
+          "target": "ASCII",
+          "label": "Text",
+          "style": "solid",
+          "points": [
+            {
+              "x": 481,
+              "y": 88
+            },
+            {
+              "x": 522,
+              "y": 88
+            },
+            {
+              "x": 522,
+              "y": 118
+            },
+            {
+              "x": 563,
+              "y": 118
+            }
+          ]
+        },
+        {
+          "source": "Layout",
+          "target": "SVG",
+          "label": "Vector",
+          "style": "solid",
+          "points": [
+            {
+              "x": 481,
+              "y": 88
+            },
+            {
+              "x": 522,
+              "y": 88
+            },
+            {
+              "x": 522,
+              "y": 58
+            },
+            {
+              "x": 567,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "Output",
+          "target": "_end",
+          "style": "solid",
+          "points": [
+            {
+              "x": 853,
+              "y": 88
+            },
+            {
+              "x": 905,
+              "y": 88
+            }
+          ]
+        },
+        {
+          "source": "Parse",
+          "target": "Layout",
+          "label": "AST",
+          "style": "solid",
+          "points": [
+            {
+              "x": 341,
+              "y": 88
+            },
+            {
+              "x": 406,
+              "y": 88
+            }
+          ]
+        },
+        {
+          "source": "SVG",
+          "target": "Theme",
+          "style": "solid",
+          "points": [
+            {
+              "x": 627,
+              "y": 58
+            },
+            {
+              "x": 705,
+              "y": 58
+            },
+            {
+              "x": 705,
+              "y": 70
+            }
+          ]
+        },
+        {
+          "source": "Theme",
+          "target": "Output",
+          "style": "solid",
+          "points": [
+            {
+              "x": 739,
+              "y": 88
+            },
+            {
+              "x": 779,
+              "y": 88
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Simple Flow",
+    "source": "graph TD\n  A[Start] --> B[Process] --> C[End]",
+    "layout": {
+      "width": 162,
+      "height": 268,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Start",
+          "shape": "rectangle",
+          "x": 47,
+          "y": 40,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Process",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 116,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "End",
+          "shape": "rectangle",
+          "x": 51,
+          "y": 192,
+          "width": 60,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 81,
+              "y": 76
+            },
+            {
+              "x": 81,
+              "y": 116
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 81,
+              "y": 152
+            },
+            {
+              "x": 81,
+              "y": 192
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Original Node Shapes",
+    "source": "graph LR\n  A[Rectangle] --> B(Rounded)\n  B --> C{Diamond}\n  C --> D([Stadium])\n  D --> E((Circle))",
+    "layout": {
+      "width": 697,
+      "height": 186,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Rectangle",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 75,
+          "width": 96,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Rounded",
+          "shape": "rounded",
+          "x": 176,
+          "y": 75,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Diamond",
+          "shape": "diamond",
+          "x": 298,
+          "y": 40,
+          "width": 106,
+          "height": 106
+        },
+        {
+          "id": "D",
+          "label": "Stadium",
+          "shape": "stadium",
+          "x": 444,
+          "y": 75,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "Circle",
+          "shape": "circle",
+          "x": 567,
+          "y": 48,
+          "width": 90,
+          "height": 90
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 136,
+              "y": 93
+            },
+            {
+              "x": 176,
+              "y": 93
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 258,
+              "y": 93
+            },
+            {
+              "x": 298,
+              "y": 93
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 404,
+              "y": 93
+            },
+            {
+              "x": 444,
+              "y": 93
+            }
+          ]
+        },
+        {
+          "source": "D",
+          "target": "E",
+          "style": "solid",
+          "points": [
+            {
+              "x": 527,
+              "y": 93
+            },
+            {
+              "x": 567,
+              "y": 93
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Batch 1 Shapes",
+    "source": "graph LR\n  A[[Subroutine]] --> B(((Double Circle)))\n  B --> C{{Hexagon}}",
+    "layout": {
+      "width": 512,
+      "height": 230,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Subroutine",
+          "shape": "subroutine",
+          "x": 40,
+          "y": 97,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Double Circle",
+          "shape": "doublecircle",
+          "x": 184,
+          "y": 40,
+          "width": 150,
+          "height": 150
+        },
+        {
+          "id": "C",
+          "label": "Hexagon",
+          "shape": "hexagon",
+          "x": 374,
+          "y": 97,
+          "width": 98,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 144,
+              "y": 115
+            },
+            {
+              "x": 184,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 334,
+              "y": 115
+            },
+            {
+              "x": 374,
+              "y": 115
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Batch 2 Shapes",
+    "source": "graph LR\n  A[(Database)] --> B>Flag Shape]\n  B --> C[/Wider Bottom\\]\n  C --> D[\\Wider Top/]",
+    "layout": {
+      "width": 651,
+      "height": 127,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Database",
+          "shape": "cylinder",
+          "x": 40,
+          "y": 40,
+          "width": 89,
+          "height": 47
+        },
+        {
+          "id": "B",
+          "label": "Flag Shape",
+          "shape": "asymmetric",
+          "x": 169,
+          "y": 46,
+          "width": 116,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Wider Bottom",
+          "shape": "trapezoid",
+          "x": 325,
+          "y": 46,
+          "width": 134,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Wider Top",
+          "shape": "trapezoid-alt",
+          "x": 498,
+          "y": 46,
+          "width": 112,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 129,
+              "y": 64
+            },
+            {
+              "x": 169,
+              "y": 64
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 285,
+              "y": 64
+            },
+            {
+              "x": 325,
+              "y": 64
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 459,
+              "y": 64
+            },
+            {
+              "x": 498,
+              "y": 64
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "All 12 Flowchart Shapes",
+    "source": "graph LR\n  A[Rectangle] --> B(Rounded)\n  B --> C{Diamond}\n  C --> D([Stadium])\n  D --> E((Circle))\n  E --> F[[Subroutine]]\n  F --> G(((Double Circle)))\n  G --> H{{Hexagon}}\n  H --> I[(Database)]\n  I --> J>Flag]\n  J --> K[/Trapezoid\\]\n  K --> L[\\Inverse Trap/]",
+    "layout": {
+      "width": 1736,
+      "height": 230,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Rectangle",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 97,
+          "width": 96,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Rounded",
+          "shape": "rounded",
+          "x": 176,
+          "y": 97,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Diamond",
+          "shape": "diamond",
+          "x": 298,
+          "y": 62,
+          "width": 106,
+          "height": 106
+        },
+        {
+          "id": "D",
+          "label": "Stadium",
+          "shape": "stadium",
+          "x": 444,
+          "y": 97,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "Circle",
+          "shape": "circle",
+          "x": 567,
+          "y": 70,
+          "width": 90,
+          "height": 90
+        },
+        {
+          "id": "F",
+          "label": "Subroutine",
+          "shape": "subroutine",
+          "x": 697,
+          "y": 97,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "G",
+          "label": "Double Circle",
+          "shape": "doublecircle",
+          "x": 840,
+          "y": 40,
+          "width": 150,
+          "height": 150
+        },
+        {
+          "id": "H",
+          "label": "Hexagon",
+          "shape": "hexagon",
+          "x": 1030,
+          "y": 97,
+          "width": 98,
+          "height": 36
+        },
+        {
+          "id": "I",
+          "label": "Database",
+          "shape": "cylinder",
+          "x": 1168,
+          "y": 92,
+          "width": 89,
+          "height": 47
+        },
+        {
+          "id": "J",
+          "label": "Flag",
+          "shape": "asymmetric",
+          "x": 1297,
+          "y": 97,
+          "width": 73,
+          "height": 36
+        },
+        {
+          "id": "K",
+          "label": "Trapezoid",
+          "shape": "trapezoid",
+          "x": 1410,
+          "y": 97,
+          "width": 112,
+          "height": 36
+        },
+        {
+          "id": "L",
+          "label": "Inverse Trap",
+          "shape": "trapezoid-alt",
+          "x": 1562,
+          "y": 97,
+          "width": 134,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 136,
+              "y": 115
+            },
+            {
+              "x": 176,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 258,
+              "y": 115
+            },
+            {
+              "x": 298,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 404,
+              "y": 115
+            },
+            {
+              "x": 444,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "D",
+          "target": "E",
+          "style": "solid",
+          "points": [
+            {
+              "x": 527,
+              "y": 115
+            },
+            {
+              "x": 567,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "F",
+          "style": "solid",
+          "points": [
+            {
+              "x": 657,
+              "y": 115
+            },
+            {
+              "x": 697,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "F",
+          "target": "G",
+          "style": "solid",
+          "points": [
+            {
+              "x": 800,
+              "y": 115
+            },
+            {
+              "x": 840,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "G",
+          "target": "H",
+          "style": "solid",
+          "points": [
+            {
+              "x": 990,
+              "y": 115
+            },
+            {
+              "x": 1030,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "H",
+          "target": "I",
+          "style": "solid",
+          "points": [
+            {
+              "x": 1128,
+              "y": 115
+            },
+            {
+              "x": 1168,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "I",
+          "target": "J",
+          "style": "solid",
+          "points": [
+            {
+              "x": 1257,
+              "y": 115
+            },
+            {
+              "x": 1297,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "J",
+          "target": "K",
+          "style": "solid",
+          "points": [
+            {
+              "x": 1370,
+              "y": 115
+            },
+            {
+              "x": 1410,
+              "y": 115
+            }
+          ]
+        },
+        {
+          "source": "K",
+          "target": "L",
+          "style": "solid",
+          "points": [
+            {
+              "x": 1522,
+              "y": 115
+            },
+            {
+              "x": 1562,
+              "y": 115
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "All Edge Styles",
+    "source": "graph TD\n  A[Source] -->|solid| B[Target 1]\n  A -.->|dotted| C[Target 2]\n  A ==>|thick| D[Target 3]",
+    "layout": {
+      "width": 396,
+      "height": 209,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Source",
+          "shape": "rectangle",
+          "x": 160,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Target 1",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 133,
+          "width": 89,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Target 2",
+          "shape": "rectangle",
+          "x": 153,
+          "y": 133,
+          "width": 89,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Target 3",
+          "shape": "rectangle",
+          "x": 266,
+          "y": 133,
+          "width": 89,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "label": "solid",
+          "style": "solid",
+          "points": [
+            {
+              "x": 198,
+              "y": 76
+            },
+            {
+              "x": 198,
+              "y": 105
+            },
+            {
+              "x": 85,
+              "y": 105
+            },
+            {
+              "x": 85,
+              "y": 133
+            }
+          ]
+        },
+        {
+          "source": "A",
+          "target": "C",
+          "label": "dotted",
+          "style": "dotted",
+          "points": [
+            {
+              "x": 198,
+              "y": 76
+            },
+            {
+              "x": 198,
+              "y": 133
+            }
+          ]
+        },
+        {
+          "source": "A",
+          "target": "D",
+          "label": "thick",
+          "style": "thick",
+          "points": [
+            {
+              "x": 198,
+              "y": 76
+            },
+            {
+              "x": 198,
+              "y": 105
+            },
+            {
+              "x": 311,
+              "y": 105
+            },
+            {
+              "x": 311,
+              "y": 133
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "No-Arrow Edges",
+    "source": "graph TD\n  A[Node 1] ---|related| B[Node 2]\n  B -.- C[Node 3]\n  C === D[Node 4]",
+    "layout": {
+      "width": 155,
+      "height": 361,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Node 1",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Node 2",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 133,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Node 3",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 209,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Node 4",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 285,
+          "width": 75,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "label": "related",
+          "style": "solid",
+          "points": [
+            {
+              "x": 77,
+              "y": 76
+            },
+            {
+              "x": 77,
+              "y": 133
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "dotted",
+          "points": [
+            {
+              "x": 77,
+              "y": 169
+            },
+            {
+              "x": 77,
+              "y": 209
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "thick",
+          "points": [
+            {
+              "x": 77,
+              "y": 245
+            },
+            {
+              "x": 77,
+              "y": 285
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Bidirectional Arrows",
+    "source": "graph LR\n  A[Client] <-->|sync| B[Server]\n  B <-.->|heartbeat| C[Monitor]\n  C <==>|data| D[Storage]",
+    "layout": {
+      "width": 635,
+      "height": 116,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Client",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Server",
+          "shape": "rectangle",
+          "x": 186,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Monitor",
+          "shape": "rectangle",
+          "x": 360,
+          "y": 40,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Storage",
+          "shape": "rectangle",
+          "x": 513,
+          "y": 40,
+          "width": 82,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "label": "sync",
+          "style": "solid",
+          "points": [
+            {
+              "x": 115,
+              "y": 58
+            },
+            {
+              "x": 186,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "label": "heartbeat",
+          "style": "dotted",
+          "points": [
+            {
+              "x": 261,
+              "y": 58
+            },
+            {
+              "x": 360,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "label": "data",
+          "style": "thick",
+          "points": [
+            {
+              "x": 442,
+              "y": 58
+            },
+            {
+              "x": 513,
+              "y": 58
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Parallel Links (&)",
+    "source": "graph TD\n  A[Input] & B[Config] --> C[Processor]\n  C --> D[Output] & E[Log]",
+    "layout": {
+      "width": 248,
+      "height": 268,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Input",
+          "shape": "rectangle",
+          "x": 42,
+          "y": 40,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Config",
+          "shape": "rectangle",
+          "x": 133,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Processor",
+          "shape": "rectangle",
+          "x": 75,
+          "y": 116,
+          "width": 96,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Output",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 192,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "Log",
+          "shape": "rectangle",
+          "x": 139,
+          "y": 192,
+          "width": 60,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 76,
+              "y": 76
+            },
+            {
+              "x": 76,
+              "y": 134
+            },
+            {
+              "x": 75,
+              "y": 134
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 171,
+              "y": 76
+            },
+            {
+              "x": 171,
+              "y": 134
+            },
+            {
+              "x": 171,
+              "y": 134
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 123,
+              "y": 152
+            },
+            {
+              "x": 123,
+              "y": 172
+            },
+            {
+              "x": 77,
+              "y": 172
+            },
+            {
+              "x": 77,
+              "y": 192
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "E",
+          "style": "solid",
+          "points": [
+            {
+              "x": 123,
+              "y": 152
+            },
+            {
+              "x": 123,
+              "y": 172
+            },
+            {
+              "x": 169,
+              "y": 172
+            },
+            {
+              "x": 169,
+              "y": 192
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Chained Edges",
+    "source": "graph LR\n  A[Step 1] --> B[Step 2] --> C[Step 3] --> D[Step 4] --> E[Step 5]",
+    "layout": {
+      "width": 615,
+      "height": 116,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Step 1",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Step 2",
+          "shape": "rectangle",
+          "x": 155,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Step 3",
+          "shape": "rectangle",
+          "x": 270,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Step 4",
+          "shape": "rectangle",
+          "x": 385,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "Step 5",
+          "shape": "rectangle",
+          "x": 500,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 115,
+              "y": 58
+            },
+            {
+              "x": 155,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 230,
+              "y": 58
+            },
+            {
+              "x": 270,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 345,
+              "y": 58
+            },
+            {
+              "x": 385,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "D",
+          "target": "E",
+          "style": "solid",
+          "points": [
+            {
+              "x": 460,
+              "y": 58
+            },
+            {
+              "x": 500,
+              "y": 58
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Direction: Left-Right (LR)",
+    "source": "graph LR\n  A[Input] --> B[Transform] --> C[Output]",
+    "layout": {
+      "width": 399,
+      "height": 116,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Input",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 40,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Transform",
+          "shape": "rectangle",
+          "x": 148,
+          "y": 40,
+          "width": 96,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Output",
+          "shape": "rectangle",
+          "x": 284,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 108,
+              "y": 58
+            },
+            {
+              "x": 148,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 244,
+              "y": 58
+            },
+            {
+              "x": 284,
+              "y": 58
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Direction: Bottom-Top (BT)",
+    "source": "graph BT\n  A[Foundation] --> B[Layer 2] --> C[Top]",
+    "layout": {
+      "width": 184,
+      "height": 268,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Foundation",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 192,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Layer 2",
+          "shape": "rectangle",
+          "x": 51,
+          "y": 116,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Top",
+          "shape": "rectangle",
+          "x": 62,
+          "y": 40,
+          "width": 60,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 92,
+              "y": 192
+            },
+            {
+              "x": 92,
+              "y": 152
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 92,
+              "y": 116
+            },
+            {
+              "x": 92,
+              "y": 76
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Subgraphs",
+    "source": "graph TD\n  subgraph Frontend\n    A[React App] --> B[State Manager]\n  end\n  subgraph Backend\n    C[API Server] --> D[Database]\n  end\n  B --> C",
+    "layout": {
+      "width": 249,
+      "height": 660,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "React App",
+          "shape": "rectangle",
+          "x": 76,
+          "y": 96,
+          "width": 96,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "State Manager",
+          "shape": "rectangle",
+          "x": 62,
+          "y": 252,
+          "width": 125,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "API Server",
+          "shape": "rectangle",
+          "x": 73,
+          "y": 408,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Database",
+          "shape": "rectangle",
+          "x": 80,
+          "y": 564,
+          "width": 89,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 124,
+              "y": 132
+            },
+            {
+              "x": 124,
+              "y": 252
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 124,
+              "y": 288
+            },
+            {
+              "x": 124,
+              "y": 408
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 124,
+              "y": 444
+            },
+            {
+              "x": 124,
+              "y": 564
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "id": "Backend",
+          "label": "Backend",
+          "x": 51,
+          "y": 352,
+          "width": 148,
+          "height": 268
+        },
+        {
+          "id": "Frontend",
+          "label": "Frontend",
+          "x": 40,
+          "y": 40,
+          "width": 169,
+          "height": 268
+        }
+      ]
+    }
+  },
+  {
+    "title": "Nested Subgraphs",
+    "source": "graph TD\n  subgraph Cloud\n    subgraph us-east [US East Region]\n      A[Web Server] --> B[App Server]\n    end\n    subgraph us-west [US West Region]\n      C[Web Server] --> D[App Server]\n    end\n  end\n  E[Load Balancer] --> A\n  E --> C",
+    "layout": {
+      "width": 435,
+      "height": 628,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Web Server",
+          "shape": "rectangle",
+          "x": 82,
+          "y": 276,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "App Server",
+          "shape": "rectangle",
+          "x": 82,
+          "y": 512,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Web Server",
+          "shape": "rectangle",
+          "x": 250,
+          "y": 276,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "App Server",
+          "shape": "rectangle",
+          "x": 250,
+          "y": 512,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "Load Balancer",
+          "shape": "rectangle",
+          "x": 155,
+          "y": 40,
+          "width": 125,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 134,
+              "y": 312
+            },
+            {
+              "x": 134,
+              "y": 512
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 301,
+              "y": 312
+            },
+            {
+              "x": 301,
+              "y": 512
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "A",
+          "style": "solid",
+          "points": [
+            {
+              "x": 218,
+              "y": 76
+            },
+            {
+              "x": 218,
+              "y": 96
+            },
+            {
+              "x": 134,
+              "y": 96
+            },
+            {
+              "x": 134,
+              "y": 276
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 218,
+              "y": 76
+            },
+            {
+              "x": 218,
+              "y": 96
+            },
+            {
+              "x": 301,
+              "y": 96
+            },
+            {
+              "x": 301,
+              "y": 276
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "id": "Cloud",
+          "label": "Cloud",
+          "x": 40,
+          "y": 184,
+          "width": 355,
+          "height": 404
+        }
+      ]
+    }
+  },
+  {
+    "title": "Subgraph Direction Override",
+    "source": "graph TD\n  subgraph pipeline [Processing Pipeline]\n    direction LR\n    A[Input] --> B[Parse] --> C[Transform] --> D[Output]\n  end\n  E[Source] --> A\n  D --> F[Sink]",
+    "layout": {
+      "width": 539,
+      "height": 292,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Input",
+          "shape": "rectangle",
+          "x": 56,
+          "y": 128,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Parse",
+          "shape": "rectangle",
+          "x": 164,
+          "y": 128,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Transform",
+          "shape": "rectangle",
+          "x": 272,
+          "y": 128,
+          "width": 96,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Output",
+          "shape": "rectangle",
+          "x": 408,
+          "y": 128,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "Source",
+          "shape": "rectangle",
+          "x": 232,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "F",
+          "label": "Sink",
+          "shape": "rectangle",
+          "x": 239,
+          "y": 216,
+          "width": 61,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 124,
+              "y": 146
+            },
+            {
+              "x": 164,
+              "y": 146
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 232,
+              "y": 146
+            },
+            {
+              "x": 272,
+              "y": 146
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 368,
+              "y": 146
+            },
+            {
+              "x": 408,
+              "y": 146
+            }
+          ]
+        },
+        {
+          "source": "D",
+          "target": "F",
+          "style": "solid",
+          "points": [
+            {
+              "x": 445,
+              "y": 146
+            },
+            {
+              "x": 445,
+              "y": 216
+            },
+            {
+              "x": 269,
+              "y": 216
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "A",
+          "style": "solid",
+          "points": [
+            {
+              "x": 269,
+              "y": 76
+            },
+            {
+              "x": 269,
+              "y": 146
+            },
+            {
+              "x": 90,
+              "y": 146
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "id": "pipeline",
+          "label": "Processing Pipeline",
+          "x": 40,
+          "y": 80,
+          "width": 459,
+          "height": 96
+        }
+      ]
+    }
+  },
+  {
+    "title": "::: Class Shorthand",
+    "source": "graph TD\n  A[Normal]:::default --> B[Highlighted]:::highlight --> C[Error]:::error\n  classDef default fill:#f4f4f5,stroke:#a1a1aa\n  classDef highlight fill:#fbbf24,stroke:#d97706\n  classDef error fill:#ef4444,stroke:#dc2626",
+    "layout": {
+      "width": 191,
+      "height": 268,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Normal",
+          "shape": "rectangle",
+          "x": 58,
+          "y": 40,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Highlighted",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 116,
+          "width": 111,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Error",
+          "shape": "rectangle",
+          "x": 61,
+          "y": 192,
+          "width": 68,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 95,
+              "y": 76
+            },
+            {
+              "x": 95,
+              "y": 116
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 95,
+              "y": 152
+            },
+            {
+              "x": 95,
+              "y": 192
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Inline Style Overrides",
+    "source": "graph TD\n  A[Default] --> B[Custom Colors] --> C[Another Custom]\n  style B fill:#3b82f6,stroke:#1d4ed8,color:#ffffff\n  style C fill:#10b981,stroke:#059669",
+    "layout": {
+      "width": 212,
+      "height": 268,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Default",
+          "shape": "rectangle",
+          "x": 65,
+          "y": 40,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Custom Colors",
+          "shape": "rectangle",
+          "x": 44,
+          "y": 116,
+          "width": 125,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Another Custom",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 192,
+          "width": 132,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 106,
+              "y": 76
+            },
+            {
+              "x": 106,
+              "y": 116
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 106,
+              "y": 152
+            },
+            {
+              "x": 106,
+              "y": 192
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "CI/CD Pipeline",
+    "source": "graph TD\n  subgraph ci [CI Pipeline]\n    A[Push Code] --> B{Tests Pass?}\n    B -->|Yes| C[Build Image]\n    B -->|No| D[Fix & Retry]\n    D -.-> A\n  end\n  C --> E([Deploy Staging])\n  E --> F{QA Approved?}\n  F -->|Yes| G((Production))\n  F -->|No| D",
+    "layout": {
+      "width": 503,
+      "height": 1291,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Push Code",
+          "shape": "rectangle",
+          "x": 325,
+          "y": 1195,
+          "width": 96,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "Tests Pass?",
+          "shape": "diamond",
+          "x": 288,
+          "y": 96,
+          "width": 135,
+          "height": 135
+        },
+        {
+          "id": "C",
+          "label": "Build Image",
+          "shape": "rectangle",
+          "x": 226,
+          "y": 368,
+          "width": 111,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Fix & Retry",
+          "shape": "rectangle",
+          "x": 285,
+          "y": 999,
+          "width": 111,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "Deploy Staging",
+          "shape": "stadium",
+          "x": 45,
+          "y": 524,
+          "width": 132,
+          "height": 36
+        },
+        {
+          "id": "F",
+          "label": "QA Approved?",
+          "shape": "diamond",
+          "x": 40,
+          "y": 680,
+          "width": 142,
+          "height": 142
+        },
+        {
+          "id": "G",
+          "label": "Production",
+          "shape": "circle",
+          "x": 52,
+          "y": 958,
+          "width": 117,
+          "height": 117
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 373,
+              "y": 1195
+            },
+            {
+              "x": 373,
+              "y": 1175
+            },
+            {
+              "x": 418,
+              "y": 1175
+            },
+            {
+              "x": 418,
+              "y": 202
+            },
+            {
+              "x": 383,
+              "y": 202
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "label": "Yes",
+          "style": "solid",
+          "points": [
+            {
+              "x": 324,
+              "y": 200
+            },
+            {
+              "x": 324,
+              "y": 251
+            },
+            {
+              "x": 281,
+              "y": 251
+            },
+            {
+              "x": 281,
+              "y": 368
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "D",
+          "label": "No",
+          "style": "solid",
+          "points": [
+            {
+              "x": 358,
+              "y": 228
+            },
+            {
+              "x": 358,
+              "y": 1017
+            },
+            {
+              "x": 396,
+              "y": 1017
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "E",
+          "style": "solid",
+          "points": [
+            {
+              "x": 281,
+              "y": 404
+            },
+            {
+              "x": 281,
+              "y": 542
+            },
+            {
+              "x": 177,
+              "y": 542
+            }
+          ]
+        },
+        {
+          "source": "D",
+          "target": "A",
+          "style": "dotted",
+          "points": [
+            {
+              "x": 341,
+              "y": 1035
+            },
+            {
+              "x": 341,
+              "y": 1213
+            },
+            {
+              "x": 325,
+              "y": 1213
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "F",
+          "style": "solid",
+          "points": [
+            {
+              "x": 111,
+              "y": 560
+            },
+            {
+              "x": 111,
+              "y": 680
+            }
+          ]
+        },
+        {
+          "source": "F",
+          "target": "D",
+          "label": "No",
+          "style": "solid",
+          "points": [
+            {
+              "x": 157,
+              "y": 776
+            },
+            {
+              "x": 157,
+              "y": 841
+            },
+            {
+              "x": 278,
+              "y": 841
+            },
+            {
+              "x": 278,
+              "y": 1017
+            },
+            {
+              "x": 285,
+              "y": 1017
+            }
+          ]
+        },
+        {
+          "source": "F",
+          "target": "G",
+          "label": "Yes",
+          "style": "solid",
+          "points": [
+            {
+              "x": 111,
+              "y": 821
+            },
+            {
+              "x": 111,
+              "y": 958
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "id": "ci",
+          "label": "CI Pipeline",
+          "x": 204,
+          "y": 40,
+          "width": 259,
+          "height": 1211
+        }
+      ]
+    }
+  },
+  {
+    "title": "System Architecture",
+    "source": "graph LR\n  subgraph clients [Client Layer]\n    A([Web App]) --> B[API Gateway]\n    C([Mobile App]) --> B\n  end\n  subgraph services [Service Layer]\n    B --> D[Auth Service]\n    B --> E[User Service]\n    B --> F[Order Service]\n  end\n  subgraph data [Data Layer]\n    D --> G[(Auth DB)]\n    E --> H[(User DB)]\n    F --> I[(Order DB)]\n    F --> J([Message Queue])\n  end",
+    "layout": {
+      "width": 944,
+      "height": 409,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Web App",
+          "shape": "stadium",
+          "x": 71,
+          "y": 145,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "API Gateway",
+          "shape": "rectangle",
+          "x": 284,
+          "y": 175,
+          "width": 111,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "Mobile App",
+          "shape": "stadium",
+          "x": 60,
+          "y": 205,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Auth Service",
+          "shape": "rectangle",
+          "x": 518,
+          "y": 104,
+          "width": 118,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "User Service",
+          "shape": "rectangle",
+          "x": 518,
+          "y": 175,
+          "width": 118,
+          "height": 36
+        },
+        {
+          "id": "F",
+          "label": "Order Service",
+          "shape": "rectangle",
+          "x": 514,
+          "y": 278,
+          "width": 125,
+          "height": 36
+        },
+        {
+          "id": "G",
+          "label": "Auth DB",
+          "shape": "cylinder",
+          "x": 781,
+          "y": 98,
+          "width": 82,
+          "height": 47
+        },
+        {
+          "id": "H",
+          "label": "User DB",
+          "shape": "cylinder",
+          "x": 781,
+          "y": 169,
+          "width": 82,
+          "height": 47
+        },
+        {
+          "id": "I",
+          "label": "Order DB",
+          "shape": "cylinder",
+          "x": 777,
+          "y": 240,
+          "width": 89,
+          "height": 47
+        },
+        {
+          "id": "J",
+          "label": "Message Queue",
+          "shape": "stadium",
+          "x": 759,
+          "y": 311,
+          "width": 125,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 153,
+              "y": 163
+            },
+            {
+              "x": 339,
+              "y": 163
+            },
+            {
+              "x": 339,
+              "y": 175
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 394,
+              "y": 193
+            },
+            {
+              "x": 414,
+              "y": 193
+            },
+            {
+              "x": 414,
+              "y": 122
+            },
+            {
+              "x": 518,
+              "y": 122
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "E",
+          "style": "solid",
+          "points": [
+            {
+              "x": 394,
+              "y": 193
+            },
+            {
+              "x": 518,
+              "y": 193
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "F",
+          "style": "solid",
+          "points": [
+            {
+              "x": 394,
+              "y": 193
+            },
+            {
+              "x": 414,
+              "y": 193
+            },
+            {
+              "x": 414,
+              "y": 296
+            },
+            {
+              "x": 514,
+              "y": 296
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 164,
+              "y": 223
+            },
+            {
+              "x": 339,
+              "y": 223
+            },
+            {
+              "x": 339,
+              "y": 211
+            }
+          ]
+        },
+        {
+          "source": "D",
+          "target": "G",
+          "style": "solid",
+          "points": [
+            {
+              "x": 636,
+              "y": 122
+            },
+            {
+              "x": 781,
+              "y": 122
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "H",
+          "style": "solid",
+          "points": [
+            {
+              "x": 636,
+              "y": 193
+            },
+            {
+              "x": 781,
+              "y": 193
+            }
+          ]
+        },
+        {
+          "source": "F",
+          "target": "I",
+          "style": "solid",
+          "points": [
+            {
+              "x": 639,
+              "y": 296
+            },
+            {
+              "x": 659,
+              "y": 296
+            },
+            {
+              "x": 659,
+              "y": 264
+            },
+            {
+              "x": 777,
+              "y": 264
+            }
+          ]
+        },
+        {
+          "source": "F",
+          "target": "J",
+          "style": "solid",
+          "points": [
+            {
+              "x": 639,
+              "y": 296
+            },
+            {
+              "x": 659,
+              "y": 296
+            },
+            {
+              "x": 659,
+              "y": 329
+            },
+            {
+              "x": 759,
+              "y": 329
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "id": "clients",
+          "label": "Client Layer",
+          "x": 40,
+          "y": 87,
+          "width": 144,
+          "height": 176
+        },
+        {
+          "id": "data",
+          "label": "Data Layer",
+          "x": 494,
+          "y": 40,
+          "width": 410,
+          "height": 329
+        },
+        {
+          "id": "services",
+          "label": "Service Layer",
+          "x": 264,
+          "y": 46,
+          "width": 151,
+          "height": 271
+        }
+      ]
+    }
+  },
+  {
+    "title": "Decision Tree",
+    "source": "graph TD\n  A{Is it raining?} -->|Yes| B{Have umbrella?}\n  A -->|No| C([Go outside])\n  B -->|Yes| D([Go with umbrella])\n  B -->|No| E{Is it heavy?}\n  E -->|Yes| F([Stay inside])\n  E -->|No| G([Run for it])",
+    "layout": {
+      "width": 443,
+      "height": 741,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Is it raining?",
+          "shape": "diamond",
+          "x": 196,
+          "y": 40,
+          "width": 156,
+          "height": 156
+        },
+        {
+          "id": "B",
+          "label": "Have umbrella?",
+          "shape": "diamond",
+          "x": 119,
+          "y": 253,
+          "width": 156,
+          "height": 156
+        },
+        {
+          "id": "C",
+          "label": "Go outside",
+          "shape": "stadium",
+          "x": 299,
+          "y": 313,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "Go with umbrella",
+          "shape": "stadium",
+          "x": 40,
+          "y": 519,
+          "width": 146,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "Is it heavy?",
+          "shape": "diamond",
+          "x": 210,
+          "y": 466,
+          "width": 142,
+          "height": 142
+        },
+        {
+          "id": "F",
+          "label": "Stay inside",
+          "shape": "stadium",
+          "x": 160,
+          "y": 665,
+          "width": 111,
+          "height": 36
+        },
+        {
+          "id": "G",
+          "label": "Run for it",
+          "shape": "stadium",
+          "x": 295,
+          "y": 665,
+          "width": 104,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "label": "Yes",
+          "style": "solid",
+          "points": [
+            {
+              "x": 241,
+              "y": 163
+            },
+            {
+              "x": 241,
+              "y": 225
+            },
+            {
+              "x": 197,
+              "y": 225
+            },
+            {
+              "x": 197,
+              "y": 253
+            }
+          ]
+        },
+        {
+          "source": "A",
+          "target": "C",
+          "label": "No",
+          "style": "solid",
+          "points": [
+            {
+              "x": 307,
+              "y": 163
+            },
+            {
+              "x": 307,
+              "y": 225
+            },
+            {
+              "x": 351,
+              "y": 225
+            },
+            {
+              "x": 351,
+              "y": 313
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "D",
+          "label": "Yes",
+          "style": "solid",
+          "points": [
+            {
+              "x": 163,
+              "y": 375
+            },
+            {
+              "x": 163,
+              "y": 438
+            },
+            {
+              "x": 113,
+              "y": 438
+            },
+            {
+              "x": 113,
+              "y": 519
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "E",
+          "label": "No",
+          "style": "solid",
+          "points": [
+            {
+              "x": 232,
+              "y": 375
+            },
+            {
+              "x": 232,
+              "y": 438
+            },
+            {
+              "x": 281,
+              "y": 438
+            },
+            {
+              "x": 281,
+              "y": 466
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "F",
+          "label": "Yes",
+          "style": "solid",
+          "points": [
+            {
+              "x": 253,
+              "y": 580
+            },
+            {
+              "x": 253,
+              "y": 637
+            },
+            {
+              "x": 216,
+              "y": 637
+            },
+            {
+              "x": 216,
+              "y": 665
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "G",
+          "label": "No",
+          "style": "solid",
+          "points": [
+            {
+              "x": 309,
+              "y": 580
+            },
+            {
+              "x": 309,
+              "y": 637
+            },
+            {
+              "x": 347,
+              "y": 637
+            },
+            {
+              "x": 347,
+              "y": 665
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Git Branching Workflow",
+    "source": "graph LR\n  A[main] --> B[develop]\n  B --> C[feature/auth]\n  B --> D[feature/ui]\n  C --> E{PR Review}\n  D --> E\n  E -->|approved| B\n  B --> F[release/1.0]\n  F --> G{Tests?}\n  G -->|pass| A\n  G -->|fail| F",
+    "layout": {
+      "width": 643,
+      "height": 363,
+      "nodes": [
+        {
+          "id": "A",
+          "label": "main",
+          "shape": "rectangle",
+          "x": 542,
+          "y": 269,
+          "width": 61,
+          "height": 36
+        },
+        {
+          "id": "B",
+          "label": "develop",
+          "shape": "rectangle",
+          "x": 40,
+          "y": 124,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "C",
+          "label": "feature/auth",
+          "shape": "rectangle",
+          "x": 162,
+          "y": 40,
+          "width": 118,
+          "height": 36
+        },
+        {
+          "id": "D",
+          "label": "feature/ui",
+          "shape": "rectangle",
+          "x": 169,
+          "y": 100,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "E",
+          "label": "PR Review",
+          "shape": "diamond",
+          "x": 351,
+          "y": 58,
+          "width": 120,
+          "height": 120
+        },
+        {
+          "id": "F",
+          "label": "release/1.0",
+          "shape": "rectangle",
+          "x": 166,
+          "y": 234,
+          "width": 111,
+          "height": 36
+        },
+        {
+          "id": "G",
+          "label": "Tests?",
+          "shape": "diamond",
+          "x": 361,
+          "y": 202,
+          "width": 99,
+          "height": 99
+        }
+      ],
+      "edges": [
+        {
+          "source": "A",
+          "target": "B",
+          "style": "solid",
+          "points": [
+            {
+              "x": 542,
+              "y": 287
+            },
+            {
+              "x": 507,
+              "y": 287
+            },
+            {
+              "x": 507,
+              "y": 323
+            },
+            {
+              "x": 81,
+              "y": 323
+            },
+            {
+              "x": 81,
+              "y": 160
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "C",
+          "style": "solid",
+          "points": [
+            {
+              "x": 122,
+              "y": 142
+            },
+            {
+              "x": 142,
+              "y": 142
+            },
+            {
+              "x": 142,
+              "y": 58
+            },
+            {
+              "x": 162,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "D",
+          "style": "solid",
+          "points": [
+            {
+              "x": 122,
+              "y": 142
+            },
+            {
+              "x": 142,
+              "y": 142
+            },
+            {
+              "x": 142,
+              "y": 118
+            },
+            {
+              "x": 169,
+              "y": 118
+            }
+          ]
+        },
+        {
+          "source": "B",
+          "target": "F",
+          "style": "solid",
+          "points": [
+            {
+              "x": 122,
+              "y": 142
+            },
+            {
+              "x": 142,
+              "y": 142
+            },
+            {
+              "x": 142,
+              "y": 252
+            },
+            {
+              "x": 166,
+              "y": 252
+            }
+          ]
+        },
+        {
+          "source": "C",
+          "target": "E",
+          "style": "solid",
+          "points": [
+            {
+              "x": 280,
+              "y": 58
+            },
+            {
+              "x": 374,
+              "y": 58
+            },
+            {
+              "x": 374,
+              "y": 95
+            }
+          ]
+        },
+        {
+          "source": "D",
+          "target": "E",
+          "style": "solid",
+          "points": [
+            {
+              "x": 273,
+              "y": 118
+            },
+            {
+              "x": 351,
+              "y": 118
+            }
+          ]
+        },
+        {
+          "source": "E",
+          "target": "B",
+          "label": "approved",
+          "style": "solid",
+          "points": [
+            {
+              "x": 371,
+              "y": 138
+            },
+            {
+              "x": 315,
+              "y": 138
+            },
+            {
+              "x": 315,
+              "y": 167
+            },
+            {
+              "x": 81,
+              "y": 167
+            },
+            {
+              "x": 81,
+              "y": 160
+            }
+          ]
+        },
+        {
+          "source": "F",
+          "target": "G",
+          "style": "solid",
+          "points": [
+            {
+              "x": 276,
+              "y": 252
+            },
+            {
+              "x": 315,
+              "y": 252
+            },
+            {
+              "x": 315,
+              "y": 201
+            },
+            {
+              "x": 379,
+              "y": 201
+            },
+            {
+              "x": 379,
+              "y": 234
+            }
+          ]
+        },
+        {
+          "source": "G",
+          "target": "A",
+          "label": "pass",
+          "style": "solid",
+          "points": [
+            {
+              "x": 460,
+              "y": 252
+            },
+            {
+              "x": 572,
+              "y": 252
+            },
+            {
+              "x": 572,
+              "y": 269
+            }
+          ]
+        },
+        {
+          "source": "G",
+          "target": "F",
+          "label": "fail",
+          "style": "solid",
+          "points": [
+            {
+              "x": 363,
+              "y": 253
+            },
+            {
+              "x": 315,
+              "y": 253
+            },
+            {
+              "x": 315,
+              "y": 255
+            },
+            {
+              "x": 221,
+              "y": 255
+            },
+            {
+              "x": 221,
+              "y": 270
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "Basic State Diagram",
+    "source": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Active : start\n  Active --> Idle : cancel\n  Active --> Done : complete\n  Done --> [*]",
+    "layout": {
+      "width": 179,
+      "height": 454,
+      "nodes": [
+        {
+          "id": "_end",
+          "label": "",
+          "shape": "state-end",
+          "x": 58,
+          "y": 378,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "_start",
+          "label": "",
+          "shape": "state-start",
+          "x": 58,
+          "y": 40,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "Active",
+          "label": "Active",
+          "shape": "rounded",
+          "x": 51,
+          "y": 209,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "Done",
+          "label": "Done",
+          "shape": "rounded",
+          "x": 58,
+          "y": 302,
+          "width": 61,
+          "height": 36
+        },
+        {
+          "id": "Idle",
+          "label": "Idle",
+          "shape": "rounded",
+          "x": 58,
+          "y": 116,
+          "width": 61,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "_start",
+          "target": "Idle",
+          "style": "solid",
+          "points": [
+            {
+              "x": 88,
+              "y": 76
+            },
+            {
+              "x": 88,
+              "y": 116
+            }
+          ]
+        },
+        {
+          "source": "Active",
+          "target": "Done",
+          "label": "complete",
+          "style": "solid",
+          "points": [
+            {
+              "x": 88,
+              "y": 245
+            },
+            {
+              "x": 88,
+              "y": 302
+            }
+          ]
+        },
+        {
+          "source": "Active",
+          "target": "Idle",
+          "label": "cancel",
+          "style": "solid",
+          "points": [
+            {
+              "x": 88,
+              "y": 209
+            },
+            {
+              "x": 88,
+              "y": 181
+            },
+            {
+              "x": 118,
+              "y": 181
+            },
+            {
+              "x": 118,
+              "y": 134
+            },
+            {
+              "x": 118,
+              "y": 134
+            }
+          ]
+        },
+        {
+          "source": "Done",
+          "target": "_end",
+          "style": "solid",
+          "points": [
+            {
+              "x": 88,
+              "y": 338
+            },
+            {
+              "x": 88,
+              "y": 378
+            }
+          ]
+        },
+        {
+          "source": "Idle",
+          "target": "Active",
+          "label": "start",
+          "style": "solid",
+          "points": [
+            {
+              "x": 88,
+              "y": 152
+            },
+            {
+              "x": 88,
+              "y": 181
+            },
+            {
+              "x": 58,
+              "y": 181
+            },
+            {
+              "x": 58,
+              "y": 227
+            },
+            {
+              "x": 51,
+              "y": 227
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "title": "State: Composite States",
+    "source": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Processing : submit\n  state Processing {\n    parse --> validate\n    validate --> execute\n  }\n  Processing --> Complete : done\n  Processing --> Error : fail\n  Error --> Idle : retry\n  Complete --> [*]",
+    "layout": {
+      "width": 310,
+      "height": 1086,
+      "nodes": [
+        {
+          "id": "_end",
+          "label": "",
+          "shape": "state-end",
+          "x": 63,
+          "y": 1010,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "_start",
+          "label": "",
+          "shape": "state-start",
+          "x": 141,
+          "y": 40,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "Complete",
+          "label": "Complete",
+          "shape": "rounded",
+          "x": 49,
+          "y": 854,
+          "width": 89,
+          "height": 36
+        },
+        {
+          "id": "Error",
+          "label": "Error",
+          "shape": "rounded",
+          "x": 189,
+          "y": 854,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "execute",
+          "label": "execute",
+          "shape": "rounded",
+          "x": 78,
+          "y": 681,
+          "width": 82,
+          "height": 36
+        },
+        {
+          "id": "Idle",
+          "label": "Idle",
+          "shape": "rounded",
+          "x": 141,
+          "y": 196,
+          "width": 61,
+          "height": 36
+        },
+        {
+          "id": "parse",
+          "label": "parse",
+          "shape": "rounded",
+          "x": 85,
+          "y": 369,
+          "width": 68,
+          "height": 36
+        },
+        {
+          "id": "validate",
+          "label": "validate",
+          "shape": "rounded",
+          "x": 74,
+          "y": 525,
+          "width": 89,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "_start",
+          "target": "Idle",
+          "style": "solid",
+          "points": [
+            {
+              "x": 171,
+              "y": 76
+            },
+            {
+              "x": 171,
+              "y": 196
+            }
+          ]
+        },
+        {
+          "source": "Complete",
+          "target": "_end",
+          "style": "solid",
+          "points": [
+            {
+              "x": 93,
+              "y": 890
+            },
+            {
+              "x": 93,
+              "y": 1010
+            }
+          ]
+        },
+        {
+          "source": "Error",
+          "target": "Idle",
+          "label": "retry",
+          "style": "solid",
+          "points": [
+            {
+              "x": 222,
+              "y": 854
+            },
+            {
+              "x": 222,
+              "y": 834
+            },
+            {
+              "x": 252,
+              "y": 834
+            },
+            {
+              "x": 252,
+              "y": 214
+            },
+            {
+              "x": 201,
+              "y": 214
+            }
+          ]
+        },
+        {
+          "source": "Idle",
+          "target": "Processing",
+          "label": "submit",
+          "style": "solid",
+          "points": [
+            {
+              "x": 171,
+              "y": 232
+            },
+            {
+              "x": 171,
+              "y": 252
+            },
+            {
+              "x": 119,
+              "y": 252
+            },
+            {
+              "x": 119,
+              "y": 369
+            }
+          ]
+        },
+        {
+          "source": "parse",
+          "target": "validate",
+          "style": "solid",
+          "points": [
+            {
+              "x": 119,
+              "y": 405
+            },
+            {
+              "x": 119,
+              "y": 525
+            }
+          ]
+        },
+        {
+          "source": "Processing",
+          "target": "Complete",
+          "label": "done",
+          "style": "solid",
+          "points": [
+            {
+              "x": 119,
+              "y": 717
+            },
+            {
+              "x": 119,
+              "y": 737
+            },
+            {
+              "x": 93,
+              "y": 737
+            },
+            {
+              "x": 93,
+              "y": 854
+            }
+          ]
+        },
+        {
+          "source": "Processing",
+          "target": "Error",
+          "label": "fail",
+          "style": "solid",
+          "points": [
+            {
+              "x": 119,
+              "y": 717
+            },
+            {
+              "x": 119,
+              "y": 737
+            },
+            {
+              "x": 170,
+              "y": 737
+            },
+            {
+              "x": 170,
+              "y": 872
+            },
+            {
+              "x": 189,
+              "y": 872
+            }
+          ]
+        },
+        {
+          "source": "validate",
+          "target": "execute",
+          "style": "solid",
+          "points": [
+            {
+              "x": 119,
+              "y": 561
+            },
+            {
+              "x": 119,
+              "y": 681
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "id": "Processing",
+          "label": "Processing",
+          "x": 40,
+          "y": 313,
+          "width": 173,
+          "height": 424
+        }
+      ]
+    }
+  },
+  {
+    "title": "State: Connection Lifecycle",
+    "source": "stateDiagram-v2\n  [*] --> Closed\n  Closed --> Connecting : connect\n  Connecting --> Connected : success\n  Connecting --> Closed : timeout\n  Connected --> Disconnecting : close\n  Connected --> Reconnecting : error\n  Reconnecting --> Connected : success\n  Reconnecting --> Closed : max_retries\n  Disconnecting --> Closed : done\n  Closed --> [*]",
+    "layout": {
+      "width": 519,
+      "height": 471,
+      "nodes": [
+        {
+          "id": "_end",
+          "label": "",
+          "shape": "state-end",
+          "x": 195,
+          "y": 395,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "_start",
+          "label": "",
+          "shape": "state-start",
+          "x": 40,
+          "y": 226,
+          "width": 60,
+          "height": 36
+        },
+        {
+          "id": "Closed",
+          "label": "Closed",
+          "shape": "rounded",
+          "x": 187,
+          "y": 319,
+          "width": 75,
+          "height": 36
+        },
+        {
+          "id": "Connected",
+          "label": "Connected",
+          "shape": "rounded",
+          "x": 218,
+          "y": 133,
+          "width": 96,
+          "height": 36
+        },
+        {
+          "id": "Connecting",
+          "label": "Connecting",
+          "shape": "rounded",
+          "x": 215,
+          "y": 40,
+          "width": 104,
+          "height": 36
+        },
+        {
+          "id": "Disconnecting",
+          "label": "Disconnecting",
+          "shape": "rounded",
+          "x": 308,
+          "y": 226,
+          "width": 125,
+          "height": 36
+        },
+        {
+          "id": "Reconnecting",
+          "label": "Reconnecting",
+          "shape": "rounded",
+          "x": 166,
+          "y": 226,
+          "width": 118,
+          "height": 36
+        }
+      ],
+      "edges": [
+        {
+          "source": "_start",
+          "target": "Closed",
+          "style": "solid",
+          "points": [
+            {
+              "x": 70,
+              "y": 262
+            },
+            {
+              "x": 70,
+              "y": 337
+            },
+            {
+              "x": 187,
+              "y": 337
+            }
+          ]
+        },
+        {
+          "source": "Closed",
+          "target": "_end",
+          "style": "solid",
+          "points": [
+            {
+              "x": 225,
+              "y": 355
+            },
+            {
+              "x": 225,
+              "y": 395
+            }
+          ]
+        },
+        {
+          "source": "Closed",
+          "target": "Connecting",
+          "label": "connect",
+          "style": "solid",
+          "points": [
+            {
+              "x": 225,
+              "y": 319
+            },
+            {
+              "x": 225,
+              "y": 291
+            },
+            {
+              "x": 455,
+              "y": 291
+            },
+            {
+              "x": 455,
+              "y": 58
+            },
+            {
+              "x": 318,
+              "y": 58
+            }
+          ]
+        },
+        {
+          "source": "Connected",
+          "target": "Disconnecting",
+          "label": "close",
+          "style": "solid",
+          "points": [
+            {
+              "x": 266,
+              "y": 169
+            },
+            {
+              "x": 266,
+              "y": 198
+            },
+            {
+              "x": 370,
+              "y": 198
+            },
+            {
+              "x": 370,
+              "y": 226
+            }
+          ]
+        },
+        {
+          "source": "Connected",
+          "target": "Reconnecting",
+          "label": "error",
+          "style": "solid",
+          "points": [
+            {
+              "x": 266,
+              "y": 169
+            },
+            {
+              "x": 266,
+              "y": 198
+            },
+            {
+              "x": 194,
+              "y": 198
+            },
+            {
+              "x": 194,
+              "y": 244
+            },
+            {
+              "x": 166,
+              "y": 244
+            }
+          ]
+        },
+        {
+          "source": "Connecting",
+          "target": "Closed",
+          "label": "timeout",
+          "style": "solid",
+          "points": [
+            {
+              "x": 266,
+              "y": 76
+            },
+            {
+              "x": 266,
+              "y": 105
+            },
+            {
+              "x": 122,
+              "y": 105
+            },
+            {
+              "x": 122,
+              "y": 337
+            },
+            {
+              "x": 187,
+              "y": 337
+            }
+          ]
+        },
+        {
+          "source": "Connecting",
+          "target": "Connected",
+          "label": "success",
+          "style": "solid",
+          "points": [
+            {
+              "x": 266,
+              "y": 76
+            },
+            {
+              "x": 266,
+              "y": 133
+            }
+          ]
+        },
+        {
+          "source": "Disconnecting",
+          "target": "Closed",
+          "label": "done",
+          "style": "solid",
+          "points": [
+            {
+              "x": 370,
+              "y": 262
+            },
+            {
+              "x": 370,
+              "y": 337
+            },
+            {
+              "x": 262,
+              "y": 337
+            }
+          ]
+        },
+        {
+          "source": "Reconnecting",
+          "target": "Closed",
+          "label": "max_retries",
+          "style": "solid",
+          "points": [
+            {
+              "x": 225,
+              "y": 262
+            },
+            {
+              "x": 225,
+              "y": 319
+            }
+          ]
+        },
+        {
+          "source": "Reconnecting",
+          "target": "Connected",
+          "label": "success",
+          "style": "solid",
+          "points": [
+            {
+              "x": 225,
+              "y": 226
+            },
+            {
+              "x": 225,
+              "y": 198
+            },
+            {
+              "x": 266,
+              "y": 198
+            },
+            {
+              "x": 266,
+              "y": 169
+            }
+          ]
+        }
+      ],
+      "groups": []
+    }
+  }
+]

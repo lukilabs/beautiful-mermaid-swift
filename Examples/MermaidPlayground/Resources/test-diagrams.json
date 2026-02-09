@@ -1,0 +1,454 @@
+{
+  "version": "1.0.0",
+  "description": "Step-by-step verification test diagrams for TypeScript/Swift Mermaid implementation comparison",
+  "diagrams": [
+    {
+      "id": "flow-1-simple",
+      "category": "flowchart",
+      "name": "Simple Flow",
+      "source": "graph TD\n  A[Start] --> B[Process] --> C[End]"
+    },
+    {
+      "id": "flow-2-original-shapes",
+      "category": "flowchart",
+      "name": "Original Node Shapes",
+      "source": "graph LR\n  A[Rectangle] --> B(Rounded)\n  B --> C{Diamond}\n  C --> D([Stadium])\n  D --> E((Circle))"
+    },
+    {
+      "id": "flow-3-batch1-shapes",
+      "category": "flowchart",
+      "name": "Batch 1 Shapes",
+      "source": "graph LR\n  A[[Subroutine]] --> B(((Double Circle)))\n  B --> C{{Hexagon}}"
+    },
+    {
+      "id": "flow-4-batch2-shapes",
+      "category": "flowchart",
+      "name": "Batch 2 Shapes",
+      "source": "graph LR\n  A[(Database)] --> B>Flag Shape]\n  B --> C[/Wider Bottom\\]\n  C --> D[\\Wider Top/]"
+    },
+    {
+      "id": "flow-5-all-12-shapes",
+      "category": "flowchart",
+      "name": "All 12 Flowchart Shapes",
+      "source": "graph LR\n  A[Rectangle] --> B(Rounded)\n  B --> C{Diamond}\n  C --> D([Stadium])\n  D --> E((Circle))\n  E --> F[[Subroutine]]\n  F --> G(((Double Circle)))\n  G --> H{{Hexagon}}\n  H --> I[(Database)]\n  I --> J>Flag]\n  J --> K[/Trapezoid\\]\n  K --> L[\\Inverse Trap/]"
+    },
+    {
+      "id": "flow-6-edge-styles",
+      "category": "flowchart",
+      "name": "All Edge Styles",
+      "source": "graph TD\n  A[Source] -->|solid| B[Target 1]\n  A -.->|dotted| C[Target 2]\n  A ==>|thick| D[Target 3]"
+    },
+    {
+      "id": "flow-7-no-arrow",
+      "category": "flowchart",
+      "name": "No-Arrow Edges",
+      "source": "graph TD\n  A[Node 1] ---|related| B[Node 2]\n  B -.- C[Node 3]\n  C === D[Node 4]"
+    },
+    {
+      "id": "flow-8-bidirectional",
+      "category": "flowchart",
+      "name": "Bidirectional Arrows",
+      "source": "graph LR\n  A[Client] <-->|sync| B[Server]\n  B <-.->|heartbeat| C[Monitor]\n  C <==>|data| D[Storage]"
+    },
+    {
+      "id": "flow-9-parallel",
+      "category": "flowchart",
+      "name": "Parallel Links (&)",
+      "source": "graph TD\n  A[Input] & B[Config] --> C[Processor]\n  C --> D[Output] & E[Log]"
+    },
+    {
+      "id": "flow-10-chained",
+      "category": "flowchart",
+      "name": "Chained Edges",
+      "source": "graph LR\n  A[Step 1] --> B[Step 2] --> C[Step 3] --> D[Step 4] --> E[Step 5]"
+    },
+    {
+      "id": "flow-11-direction-lr",
+      "category": "flowchart",
+      "name": "Direction: Left-Right",
+      "source": "graph LR\n  A[Input] --> B[Transform] --> C[Output]"
+    },
+    {
+      "id": "flow-12-direction-bt",
+      "category": "flowchart",
+      "name": "Direction: Bottom-Top",
+      "source": "graph BT\n  A[Foundation] --> B[Layer 2] --> C[Top]"
+    },
+    {
+      "id": "flow-13-subgraphs",
+      "category": "flowchart",
+      "name": "Subgraphs",
+      "source": "graph TD\n  subgraph Frontend\n    A[React App] --> B[State Manager]\n  end\n  subgraph Backend\n    C[API Server] --> D[Database]\n  end\n  B --> C"
+    },
+    {
+      "id": "flow-14-nested-subgraphs",
+      "category": "flowchart",
+      "name": "Nested Subgraphs",
+      "source": "graph TD\n  subgraph Cloud\n    subgraph us-east [US East Region]\n      A[Web Server] --> B[App Server]\n    end\n    subgraph us-west [US West Region]\n      C[Web Server] --> D[App Server]\n    end\n  end\n  E[Load Balancer] --> A\n  E --> C"
+    },
+    {
+      "id": "flow-15-subgraph-direction",
+      "category": "flowchart",
+      "name": "Subgraph Direction Override",
+      "source": "graph TD\n  subgraph pipeline [Processing Pipeline]\n    direction LR\n    A[Input] --> B[Parse] --> C[Transform] --> D[Output]\n  end\n  E[Source] --> A\n  D --> F[Sink]"
+    },
+    {
+      "id": "flow-16-class-shorthand",
+      "category": "flowchart",
+      "name": "Class Shorthand (:::)",
+      "source": "graph TD\n  A[Normal]:::default --> B[Highlighted]:::highlight --> C[Error]:::error\n  classDef default fill:#f4f4f5,stroke:#a1a1aa\n  classDef highlight fill:#fbbf24,stroke:#d97706\n  classDef error fill:#ef4444,stroke:#dc2626"
+    },
+    {
+      "id": "flow-17-inline-style",
+      "category": "flowchart",
+      "name": "Inline Style Overrides",
+      "source": "graph TD\n  A[Default] --> B[Custom Colors] --> C[Another Custom]\n  style B fill:#3b82f6,stroke:#1d4ed8,color:#ffffff\n  style C fill:#10b981,stroke:#059669"
+    },
+    {
+      "id": "flow-18-cicd-pipeline",
+      "category": "flowchart",
+      "name": "CI/CD Pipeline",
+      "source": "graph TD\n  subgraph ci [CI Pipeline]\n    A[Push Code] --> B{Tests Pass?}\n    B -->|Yes| C[Build Image]\n    B -->|No| D[Fix & Retry]\n    D -.-> A\n  end\n  C --> E([Deploy Staging])\n  E --> F{QA Approved?}\n  F -->|Yes| G((Production))\n  F -->|No| D"
+    },
+    {
+      "id": "flow-19-system-architecture",
+      "category": "flowchart",
+      "name": "System Architecture",
+      "source": "graph LR\n  subgraph clients [Client Layer]\n    A([Web App]) --> B[API Gateway]\n    C([Mobile App]) --> B\n  end\n  subgraph services [Service Layer]\n    B --> D[Auth Service]\n    B --> E[User Service]\n    B --> F[Order Service]\n  end\n  subgraph data [Data Layer]\n    D --> G[(Auth DB)]\n    E --> H[(User DB)]\n    F --> I[(Order DB)]\n    F --> J([Message Queue])\n  end"
+    },
+    {
+      "id": "flow-19b-services-first",
+      "category": "flowchart",
+      "name": "System Architecture (Services First)",
+      "source": "graph LR\n  subgraph services [Service Layer]\n    B[API Gateway] --> D[Auth Service]\n    B --> E[User Service]\n    B --> F[Order Service]\n  end\n  subgraph clients [Client Layer]\n    A([Web App]) --> B\n    C([Mobile App]) --> B\n  end\n  subgraph data [Data Layer]\n    D --> G[(Auth DB)]\n    E --> H[(User DB)]\n    F --> I[(Order DB)]\n    F --> J([Message Queue])\n  end"
+    },
+    {
+      "id": "flow-20-decision-tree",
+      "category": "flowchart",
+      "name": "Decision Tree",
+      "source": "graph TD\n  A{Is it raining?} -->|Yes| B{Have umbrella?}\n  A -->|No| C([Go outside])\n  B -->|Yes| D([Go with umbrella])\n  B -->|No| E{Is it heavy?}\n  E -->|Yes| F([Stay inside])\n  E -->|No| G([Run for it])"
+    },
+    {
+      "id": "flow-21-git-branching",
+      "category": "flowchart",
+      "name": "Git Branching Workflow",
+      "source": "graph LR\n  A[main] --> B[develop]\n  B --> C[feature/auth]\n  B --> D[feature/ui]\n  C --> E{PR Review}\n  D --> E\n  E -->|approved| B\n  B --> F[release/1.0]\n  F --> G{Tests?}\n  G -->|pass| A\n  G -->|fail| F"
+    },
+    {
+      "id": "flow-22-self-loop",
+      "category": "flowchart",
+      "name": "Self-Loop Edge",
+      "source": "graph TD\n  A[Retry Node] --> A"
+    },
+    {
+      "id": "flow-23-self-loop-label",
+      "category": "flowchart",
+      "name": "Self-Loop with Label",
+      "source": "graph TD\n  A[Process] -->|retry| A\n  A --> B[Done]"
+    },
+    {
+      "id": "flow-24-multiple-self-loops",
+      "category": "flowchart",
+      "name": "Multiple Self-Loops",
+      "source": "graph TD\n  A[Start] --> B[Validate]\n  B -->|invalid| B\n  B -->|valid| C[Process]\n  C -->|retry| C\n  C --> D[End]"
+    },
+    {
+      "id": "state-1-basic",
+      "category": "state",
+      "name": "Basic State Diagram",
+      "source": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Active : start\n  Active --> Idle : cancel\n  Active --> Done : complete\n  Done --> [*]"
+    },
+    {
+      "id": "state-2-composite",
+      "category": "state",
+      "name": "Composite States",
+      "source": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Processing : submit\n  state Processing {\n    parse --> validate\n    validate --> execute\n  }\n  Processing --> Complete : done\n  Processing --> Error : fail\n  Error --> Idle : retry\n  Complete --> [*]"
+    },
+    {
+      "id": "state-3-connection-lifecycle",
+      "category": "state",
+      "name": "Connection Lifecycle",
+      "source": "stateDiagram-v2\n  [*] --> Closed\n  Closed --> Connecting : connect\n  Connecting --> Connected : success\n  Connecting --> Closed : timeout\n  Connected --> Disconnecting : close\n  Connected --> Reconnecting : error\n  Reconnecting --> Connected : success\n  Reconnecting --> Closed : max_retries\n  Disconnecting --> Closed : done\n  Closed --> [*]"
+    },
+    {
+      "id": "seq-1-basic",
+      "category": "sequence",
+      "name": "Basic Messages",
+      "source": "sequenceDiagram\n  Alice->>Bob: Hello Bob!\n  Bob-->>Alice: Hi Alice!"
+    },
+    {
+      "id": "seq-2-aliases",
+      "category": "sequence",
+      "name": "Participant Aliases",
+      "source": "sequenceDiagram\n  participant A as Alice\n  participant B as Bob\n  participant C as Charlie\n  A->>B: Hello\n  B->>C: Forward\n  C-->>A: Reply"
+    },
+    {
+      "id": "seq-3-actors",
+      "category": "sequence",
+      "name": "Actor Stick Figures",
+      "source": "sequenceDiagram\n  actor U as User\n  participant S as System\n  participant DB as Database\n  U->>S: Click button\n  S->>DB: Query\n  DB-->>S: Results\n  S-->>U: Display"
+    },
+    {
+      "id": "seq-4-arrow-types",
+      "category": "sequence",
+      "name": "Arrow Types",
+      "source": "sequenceDiagram\n  A->>B: Solid arrow (sync)\n  B-->>A: Dashed arrow (return)\n  A-)B: Open arrow (async)\n  B--)A: Open dashed arrow"
+    },
+    {
+      "id": "seq-5-activations",
+      "category": "sequence",
+      "name": "Activation Boxes",
+      "source": "sequenceDiagram\n  participant C as Client\n  participant S as Server\n  C->>+S: Request\n  S->>+S: Process\n  S->>-S: Done\n  S-->>-C: Response"
+    },
+    {
+      "id": "seq-6-self-messages",
+      "category": "sequence",
+      "name": "Self-Messages",
+      "source": "sequenceDiagram\n  participant S as Server\n  S->>S: Internal process\n  S->>S: Validate\n  S-->>S: Log"
+    },
+    {
+      "id": "seq-7-loop",
+      "category": "sequence",
+      "name": "Loop Block",
+      "source": "sequenceDiagram\n  participant C as Client\n  participant S as Server\n  C->>S: Connect\n  loop Every 30s\n    C->>S: Heartbeat\n    S-->>C: Ack\n  end\n  C->>S: Disconnect"
+    },
+    {
+      "id": "seq-8-alt-else",
+      "category": "sequence",
+      "name": "Alt/Else Block",
+      "source": "sequenceDiagram\n  participant C as Client\n  participant S as Server\n  C->>S: Login\n  alt Valid credentials\n    S-->>C: 200 OK\n  else Invalid\n    S-->>C: 401 Unauthorized\n  else Account locked\n    S-->>C: 403 Forbidden\n  end"
+    },
+    {
+      "id": "seq-9-opt",
+      "category": "sequence",
+      "name": "Opt Block",
+      "source": "sequenceDiagram\n  participant A as App\n  participant C as Cache\n  participant DB as Database\n  A->>C: Get data\n  C-->>A: Cache miss\n  opt Cache miss\n    A->>DB: Query\n    DB-->>A: Results\n    A->>C: Store in cache\n  end"
+    },
+    {
+      "id": "seq-10-par",
+      "category": "sequence",
+      "name": "Par Block",
+      "source": "sequenceDiagram\n  participant C as Client\n  participant A as AuthService\n  participant U as UserService\n  participant O as OrderService\n  C->>A: Authenticate\n  par Fetch user data\n    A->>U: Get profile\n  and Fetch orders\n    A->>O: Get orders\n  end\n  A-->>C: Combined response"
+    },
+    {
+      "id": "seq-11-critical",
+      "category": "sequence",
+      "name": "Critical Block",
+      "source": "sequenceDiagram\n  participant A as App\n  participant DB as Database\n  A->>DB: BEGIN\n  critical Transaction\n    A->>DB: UPDATE accounts\n    A->>DB: INSERT log\n  end\n  A->>DB: COMMIT"
+    },
+    {
+      "id": "seq-12-notes",
+      "category": "sequence",
+      "name": "Notes (Right/Left/Over)",
+      "source": "sequenceDiagram\n  participant A as Alice\n  participant B as Bob\n  Note left of A: Alice prepares\n  A->>B: Hello\n  Note right of B: Bob thinks\n  B-->>A: Reply\n  Note over A,B: Conversation complete"
+    },
+    {
+      "id": "seq-13-oauth",
+      "category": "sequence",
+      "name": "OAuth 2.0 Flow",
+      "source": "sequenceDiagram\n  actor U as User\n  participant App as Client App\n  participant Auth as Auth Server\n  participant API as Resource API\n  U->>App: Click Login\n  App->>Auth: Authorization request\n  Auth->>U: Login page\n  U->>Auth: Credentials\n  Auth-->>App: Authorization code\n  App->>Auth: Exchange code for token\n  Auth-->>App: Access token\n  App->>API: Request + token\n  API-->>App: Protected resource\n  App-->>U: Display data"
+    },
+    {
+      "id": "seq-14-db-transaction",
+      "category": "sequence",
+      "name": "Database Transaction",
+      "source": "sequenceDiagram\n  participant C as Client\n  participant S as Server\n  participant DB as Database\n  C->>S: POST /transfer\n  S->>DB: BEGIN\n  S->>DB: Debit account A\n  alt Success\n    S->>DB: Credit account B\n    S->>DB: INSERT audit_log\n    S->>DB: COMMIT\n    S-->>C: 200 OK\n  else Insufficient funds\n    S->>DB: ROLLBACK\n    S-->>C: 400 Bad Request\n  end"
+    },
+    {
+      "id": "seq-15-microservice",
+      "category": "sequence",
+      "name": "Microservice Orchestration",
+      "source": "sequenceDiagram\n  participant G as Gateway\n  participant A as Auth\n  participant U as Users\n  participant O as Orders\n  participant N as Notify\n  G->>A: Validate token\n  A-->>G: Valid\n  par Fetch data\n    G->>U: Get user\n    U-->>G: User data\n  and\n    G->>O: Get orders\n    O-->>G: Order list\n  end\n  G->>N: Send notification\n  N-->>G: Queued\n  Note over G: Aggregate response"
+    },
+    {
+      "id": "class-1-basic",
+      "category": "class",
+      "name": "Basic Class",
+      "source": "classDiagram\n  class Animal {\n    +String name\n    +int age\n    +eat() void\n    +sleep() void\n  }"
+    },
+    {
+      "id": "class-2-visibility",
+      "category": "class",
+      "name": "Visibility Markers",
+      "source": "classDiagram\n  class User {\n    +String name\n    -String password\n    #int internalId\n    ~String packageField\n    +login() bool\n    -hashPassword() String\n    #validate() void\n    ~notify() void\n  }"
+    },
+    {
+      "id": "class-3-interface",
+      "category": "class",
+      "name": "Interface Annotation",
+      "source": "classDiagram\n  class Serializable {\n    <<interface>>\n    +serialize() String\n    +deserialize(data) void\n  }"
+    },
+    {
+      "id": "class-4-abstract",
+      "category": "class",
+      "name": "Abstract Annotation",
+      "source": "classDiagram\n  class Shape {\n    <<abstract>>\n    +String color\n    +area() double\n    +draw() void\n  }"
+    },
+    {
+      "id": "class-5-enum",
+      "category": "class",
+      "name": "Enum Annotation",
+      "source": "classDiagram\n  class Status {\n    <<enumeration>>\n    ACTIVE\n    INACTIVE\n    PENDING\n    DELETED\n  }"
+    },
+    {
+      "id": "class-6-inheritance",
+      "category": "class",
+      "name": "Inheritance (<|--)",
+      "source": "classDiagram\n  class Animal {\n    +String name\n    +eat() void\n  }\n  class Dog {\n    +String breed\n    +bark() void\n  }\n  class Cat {\n    +bool isIndoor\n    +meow() void\n  }\n  Animal <|-- Dog\n  Animal <|-- Cat"
+    },
+    {
+      "id": "class-7-composition",
+      "category": "class",
+      "name": "Composition (*--)",
+      "source": "classDiagram\n  class Car {\n    +String model\n    +start() void\n  }\n  class Engine {\n    +int horsepower\n    +rev() void\n  }\n  Car *-- Engine"
+    },
+    {
+      "id": "class-8-aggregation",
+      "category": "class",
+      "name": "Aggregation (o--)",
+      "source": "classDiagram\n  class University {\n    +String name\n  }\n  class Department {\n    +String faculty\n  }\n  University o-- Department"
+    },
+    {
+      "id": "class-9-association",
+      "category": "class",
+      "name": "Association (-->)",
+      "source": "classDiagram\n  class Customer {\n    +String name\n  }\n  class Order {\n    +int orderId\n  }\n  Customer --> Order"
+    },
+    {
+      "id": "class-10-dependency",
+      "category": "class",
+      "name": "Dependency (..>)",
+      "source": "classDiagram\n  class Service {\n    +process() void\n  }\n  class Repository {\n    +find() Object\n  }\n  Service ..> Repository"
+    },
+    {
+      "id": "class-11-realization",
+      "category": "class",
+      "name": "Realization (..|>)",
+      "source": "classDiagram\n  class Flyable {\n    <<interface>>\n    +fly() void\n  }\n  class Bird {\n    +fly() void\n    +sing() void\n  }\n  Bird ..|> Flyable"
+    },
+    {
+      "id": "class-12-all-relationships",
+      "category": "class",
+      "name": "All 6 Relationship Types",
+      "source": "classDiagram\n  A <|-- B : inheritance\n  C *-- D : composition\n  E o-- F : aggregation\n  G --> H : association\n  I ..> J : dependency\n  K ..|> L : realization"
+    },
+    {
+      "id": "class-13-labels",
+      "category": "class",
+      "name": "Relationship Labels",
+      "source": "classDiagram\n  class Teacher {\n    +String name\n  }\n  class Student {\n    +String name\n  }\n  class Course {\n    +String title\n  }\n  Teacher --> Course : teaches\n  Student --> Course : enrolled in"
+    },
+    {
+      "id": "class-14-observer",
+      "category": "class",
+      "name": "Design Pattern - Observer",
+      "source": "classDiagram\n  class Subject {\n    <<interface>>\n    +attach(Observer) void\n    +detach(Observer) void\n    +notify() void\n  }\n  class Observer {\n    <<interface>>\n    +update() void\n  }\n  class EventEmitter {\n    -List~Observer~ observers\n    +attach(Observer) void\n    +detach(Observer) void\n    +notify() void\n  }\n  class Logger {\n    +update() void\n  }\n  class Alerter {\n    +update() void\n  }\n  Subject <|.. EventEmitter\n  Observer <|.. Logger\n  Observer <|.. Alerter\n  EventEmitter --> Observer"
+    },
+    {
+      "id": "class-15-mvc",
+      "category": "class",
+      "name": "MVC Architecture",
+      "source": "classDiagram\n  class Model {\n    -data Map\n    +getData() Map\n    +setData(key, val) void\n    +notify() void\n  }\n  class View {\n    -model Model\n    +render() void\n    +update() void\n  }\n  class Controller {\n    -model Model\n    -view View\n    +handleInput(event) void\n    +updateModel(data) void\n  }\n  Controller --> Model : updates\n  Controller --> View : refreshes\n  View --> Model : reads\n  Model ..> View : notifies"
+    },
+    {
+      "id": "class-16-full-hierarchy",
+      "category": "class",
+      "name": "Full Hierarchy",
+      "source": "classDiagram\n  class Animal {\n    <<abstract>>\n    +String name\n    +int age\n    +eat() void\n    +sleep() void\n  }\n  class Mammal {\n    +bool warmBlooded\n    +nurse() void\n  }\n  class Bird {\n    +bool canFly\n    +layEggs() void\n  }\n  class Dog {\n    +String breed\n    +bark() void\n  }\n  class Cat {\n    +bool isIndoor\n    +purr() void\n  }\n  class Parrot {\n    +String vocabulary\n    +speak() void\n  }\n  Animal <|-- Mammal\n  Animal <|-- Bird\n  Mammal <|-- Dog\n  Mammal <|-- Cat\n  Bird <|-- Parrot"
+    },
+    {
+      "id": "er-1-basic",
+      "category": "er",
+      "name": "Basic Relationship",
+      "source": "erDiagram\n  CUSTOMER ||--o{ ORDER : places"
+    },
+    {
+      "id": "er-2-attributes",
+      "category": "er",
+      "name": "Entity with Attributes",
+      "source": "erDiagram\n  CUSTOMER {\n    int id PK\n    string name\n    string email UK\n    date created_at\n  }"
+    },
+    {
+      "id": "er-3-keys",
+      "category": "er",
+      "name": "Attribute Keys (PK, FK, UK)",
+      "source": "erDiagram\n  ORDER {\n    int id PK\n    int customer_id FK\n    string invoice_number UK\n    decimal total\n    date order_date\n    string status\n  }"
+    },
+    {
+      "id": "er-4-one-to-one",
+      "category": "er",
+      "name": "Exactly One to Exactly One",
+      "source": "erDiagram\n  PERSON ||--|| PASSPORT : has"
+    },
+    {
+      "id": "er-5-one-to-many",
+      "category": "er",
+      "name": "Exactly One to Zero-or-Many",
+      "source": "erDiagram\n  CUSTOMER ||--o{ ORDER : places"
+    },
+    {
+      "id": "er-6-optional-many",
+      "category": "er",
+      "name": "Zero-or-One to One-or-Many",
+      "source": "erDiagram\n  SUPERVISOR |o--|{ EMPLOYEE : manages"
+    },
+    {
+      "id": "er-7-many-to-many",
+      "category": "er",
+      "name": "One-or-More to Zero-or-Many",
+      "source": "erDiagram\n  TEACHER }|--o{ COURSE : teaches"
+    },
+    {
+      "id": "er-8-all-cardinality",
+      "category": "er",
+      "name": "All Cardinality Types",
+      "source": "erDiagram\n  A ||--|| B : one-to-one\n  C ||--o{ D : one-to-many\n  E |o--|{ F : opt-to-many\n  G }|--o{ H : many-to-many"
+    },
+    {
+      "id": "er-9-identifying",
+      "category": "er",
+      "name": "Identifying Relationship",
+      "source": "erDiagram\n  ORDER ||--|{ LINE_ITEM : contains"
+    },
+    {
+      "id": "er-10-non-identifying",
+      "category": "er",
+      "name": "Non-Identifying Relationship",
+      "source": "erDiagram\n  USER ||..o{ LOG_ENTRY : generates\n  USER ||..o{ SESSION : opens"
+    },
+    {
+      "id": "er-11-mixed",
+      "category": "er",
+      "name": "Mixed Identifying & Non-Identifying",
+      "source": "erDiagram\n  ORDER ||--|{ LINE_ITEM : contains\n  ORDER ||..o{ SHIPMENT : ships-via\n  PRODUCT ||--o{ LINE_ITEM : includes\n  PRODUCT ||..o{ REVIEW : receives"
+    },
+    {
+      "id": "er-12-ecommerce",
+      "category": "er",
+      "name": "E-Commerce Schema",
+      "source": "erDiagram\n  CUSTOMER {\n    int id PK\n    string name\n    string email UK\n  }\n  ORDER {\n    int id PK\n    date created\n    int customer_id FK\n  }\n  PRODUCT {\n    int id PK\n    string name\n    float price\n  }\n  LINE_ITEM {\n    int id PK\n    int order_id FK\n    int product_id FK\n    int quantity\n  }\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  PRODUCT ||--o{ LINE_ITEM : includes"
+    },
+    {
+      "id": "er-13-blog",
+      "category": "er",
+      "name": "Blog Platform Schema",
+      "source": "erDiagram\n  USER {\n    int id PK\n    string username UK\n    string email UK\n    date joined\n  }\n  POST {\n    int id PK\n    string title\n    text content\n    int author_id FK\n    date published\n  }\n  COMMENT {\n    int id PK\n    text body\n    int post_id FK\n    int user_id FK\n    date created\n  }\n  TAG {\n    int id PK\n    string name UK\n  }\n  USER ||--o{ POST : writes\n  USER ||--o{ COMMENT : authors\n  POST ||--o{ COMMENT : has\n  POST }|--o{ TAG : tagged-with"
+    },
+    {
+      "id": "er-14-school",
+      "category": "er",
+      "name": "School Management Schema",
+      "source": "erDiagram\n  STUDENT {\n    int id PK\n    string name\n    date dob\n    string grade\n  }\n  TEACHER {\n    int id PK\n    string name\n    string department\n  }\n  COURSE {\n    int id PK\n    string title\n    int teacher_id FK\n    int credits\n  }\n  ENROLLMENT {\n    int id PK\n    int student_id FK\n    int course_id FK\n    string semester\n    float grade\n  }\n  TEACHER ||--o{ COURSE : teaches\n  STUDENT ||--o{ ENROLLMENT : enrolled\n  COURSE ||--o{ ENROLLMENT : has"
+    }
+  ],
+  "metadata": {
+    "totalCount": 72,
+    "categories": {
+      "flowchart": 24,
+      "state": 3,
+      "sequence": 15,
+      "class": 16,
+      "er": 14
+    }
+  }
+}
