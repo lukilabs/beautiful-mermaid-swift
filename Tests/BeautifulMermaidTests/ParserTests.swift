@@ -333,6 +333,28 @@ final class ParserTests: XCTestCase {
         }
     }
 
+    // MARK: - Semicolon Separator Tests
+
+    func testSemicolonLineSeparator() throws {
+        let source = "graph LR; A[Start] --> B[End]"
+
+        let graph = try MermaidParser.parse(source)
+
+        XCTAssertEqual(graph.nodes.count, 2, "Should have 2 nodes")
+        XCTAssertEqual(graph.edges.count, 1, "Should have 1 edge")
+        XCTAssertEqual(graph.nodes["A"]?.label, "Start")
+        XCTAssertEqual(graph.nodes["B"]?.label, "End")
+    }
+
+    func testSemicolonMultipleSeparators() throws {
+        let source = "graph TD; A --> B; B --> C"
+
+        let graph = try MermaidParser.parse(source)
+
+        XCTAssertEqual(graph.nodes.count, 3, "Should have 3 nodes")
+        XCTAssertEqual(graph.edges.count, 2, "Should have 2 edges")
+    }
+
     // MARK: - Error Handling Tests
 
     func testEmptyInput() {

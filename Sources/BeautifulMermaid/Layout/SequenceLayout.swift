@@ -432,6 +432,22 @@ public struct SequenceLayout: GraphLayoutAlgorithm {
             globalMinX = min(globalMinX, n.bounds.minX)
             globalMaxX = max(globalMaxX, n.bounds.maxX)
         }
+        // Include message labels in bounding box
+        for m in messages {
+            if !m.label.isEmpty {
+                let labelWidth = measureText(
+                    m.label,
+                    fontSize: RenderConfig.shared.fontSizeEdgeLabel,
+                    fontWeight: RenderConfig.shared.fontWeightEdgeLabel
+                )
+                if m.isSelfMessage {
+                    globalMaxX = max(globalMaxX, m.labelPosition.x + labelWidth)
+                } else {
+                    globalMinX = min(globalMinX, m.labelPosition.x - labelWidth / 2)
+                    globalMaxX = max(globalMaxX, m.labelPosition.x + labelWidth / 2)
+                }
+            }
+        }
 
         // If elements extend left of the desired padding, shift everything right
         let shiftX = globalMinX < c.padding ? c.padding - globalMinX : 0

@@ -421,6 +421,41 @@ final class SequenceTests: XCTestCase {
         XCTAssertEqual(positioned.messages.count, 5)
     }
 
+    func testSelfMessageLabelIncludedInBounds() {
+        let source = """
+        sequenceDiagram
+            participant C as Client
+            participant S as Server
+            C->>+S: Request
+            S->>+S: Process
+            S-->>-C: Response
+        """
+
+        let diagram = parseSequenceDiagram(source)
+        let positioned = layoutSequenceDiagram(diagram)
+
+        // Find the self-message "Process"
+        let selfMsg = positioned.messages.first { $0.isSelfMessage }
+        XCTAssertNotNil(selfMsg, "Should have a self-message")
+
+        guard let msg = selfMsg else { return }
+
+        // Measure the label width the same way the layout engine does
+        let labelWidth = RenderConfig.shared.estimateTextWidth(
+            msg.label,
+            fontSize: RenderConfig.shared.fontSizeEdgeLabel,
+            fontWeight: RenderConfig.shared.fontWeightEdgeLabel
+        )
+
+        // The diagram width must be large enough to contain the label
+        let labelRightEdge = msg.labelPosition.x + labelWidth
+        XCTAssertGreaterThanOrEqual(
+            positioned.width,
+            labelRightEdge,
+            "Diagram width (\(positioned.width)) must accommodate self-message label right edge (\(labelRightEdge))"
+        )
+    }
+
     func testMermaidParserBackwardsCompatibility() throws {
         let source = """
         sequenceDiagram

@@ -43,6 +43,7 @@ public struct MermaidParser {
     /// Parse a Mermaid diagram from source text
     public func parse(_ source: String) throws -> MermaidGraph {
         let lines = source.components(separatedBy: .newlines)
+            .flatMap { $0.components(separatedBy: ";") }
             .map { $0.trimmingCharacters(in: .whitespaces) }
 
         guard !lines.isEmpty else {

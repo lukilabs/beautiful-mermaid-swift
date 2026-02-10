@@ -95,7 +95,7 @@ public struct MermaidRenderer {
 
 extension MermaidRenderer {
     /// Library version
-    public static let version = "1.0.0"
+    public static let version = "0.1.1"
 
     /// Supported Mermaid diagram types
     public static let supportedDiagramTypes: [DiagramType] = DiagramType.allCases
