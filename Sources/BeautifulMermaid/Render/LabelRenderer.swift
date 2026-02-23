@@ -125,13 +125,21 @@ public class LabelRenderer {
         context: CGContext,
         color: BMColor,
         font: BMFont,
+        alignment: TextAlignment = .center,
         lineSpacing: CGFloat = 4
     ) {
         guard !text.isEmpty else { return }
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = lineSpacing
-        paragraphStyle.alignment = .center
+        switch alignment {
+        case .left:
+            paragraphStyle.alignment = .left
+        case .center:
+            paragraphStyle.alignment = .center
+        case .right:
+            paragraphStyle.alignment = .right
+        }
 
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,

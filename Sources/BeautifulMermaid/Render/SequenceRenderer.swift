@@ -315,14 +315,13 @@ public class SequenceRenderer {
             if !note.text.isEmpty {
                 let textRect = bounds.insetBy(dx: SequenceConstants.notePadding, dy: SequenceConstants.notePadding)
                 let noteFont = RenderConfig.shared.edgeLabelFont()
-                labelRenderer.drawText(
+                labelRenderer.drawMultilineText(
                     note.text,
                     in: textRect,
                     context: context,
                     color: theme.effectiveMuted(),
                     font: noteFont,
-                    alignment: .left,
-                    verticalAlignment: .center
+                    alignment: .left
                 )
             }
         }

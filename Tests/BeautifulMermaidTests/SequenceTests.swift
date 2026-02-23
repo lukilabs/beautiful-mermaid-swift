@@ -285,6 +285,20 @@ final class SequenceTests: XCTestCase {
         XCTAssertEqual(diagram.notes[0].actorIds, ["A", "B"])
     }
 
+    func testNoteHtmlBreaksNormalizeToNewlines() {
+        let source = """
+        sequenceDiagram
+            Note right of B: line 1<br/>line 2<BR>line 3<br />line 4
+            A->>B: Hello
+        """
+
+        let diagram = parseSequenceDiagram(source)
+
+        XCTAssertEqual(diagram.notes.count, 1)
+        XCTAssertEqual(diagram.notes[0].text, "line 1\nline 2\nline 3\nline 4")
+        XCTAssertFalse(diagram.notes[0].text.contains("<br"))
+    }
+
     func testImplicitParticipants() {
         let source = """
         sequenceDiagram
@@ -381,6 +395,30 @@ final class SequenceTests: XCTestCase {
 
         XCTAssertTrue(positioned.width > 0)
         XCTAssertTrue(positioned.height > 0)
+    }
+
+    func testMultilineNoteIncreasesNoteHeight() {
+        let singleSource = """
+        sequenceDiagram
+            participant A
+            participant B
+            Note right of B: Single line
+            A->>B: Hello
+        """
+        let multiSource = """
+        sequenceDiagram
+            participant A
+            participant B
+            Note right of B: Line 1<br/>Line 2
+            A->>B: Hello
+        """
+
+        let single = layoutSequenceDiagram(parseSequenceDiagram(singleSource))
+        let multi = layoutSequenceDiagram(parseSequenceDiagram(multiSource))
+
+        XCTAssertEqual(single.notes.count, 1)
+        XCTAssertEqual(multi.notes.count, 1)
+        XCTAssertGreaterThan(multi.notes[0].bounds.height, single.notes[0].bounds.height)
     }
 
     // MARK: - Integration Tests
