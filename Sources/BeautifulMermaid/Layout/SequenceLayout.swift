@@ -379,11 +379,16 @@ public struct SequenceLayout: GraphLayoutAlgorithm {
         // Port of: lines 263-293
         var notes: [PositionedSequenceNote] = []
         for note in diagram.notes {
+            let noteMetrics = measureMultilineText(
+                note.text,
+                fontSize: RenderConfig.shared.fontSizeEdgeLabel,
+                fontWeight: RenderConfig.shared.fontWeightEdgeLabel
+            )
             let noteW = max(
                 c.noteWidth,
-                measureText(note.text, fontSize: RenderConfig.shared.fontSizeEdgeLabel, fontWeight: RenderConfig.shared.fontWeightEdgeLabel) + c.notePadding * 2
+                noteMetrics.width + c.notePadding * 2
             )
-            let noteH = RenderConfig.shared.fontSizeEdgeLabel + c.notePadding * 2
+            let noteH = noteMetrics.height + c.notePadding * 2
 
             // Position based on the message after which it appears
             let refMsg = note.afterIndex >= 0 && note.afterIndex < messages.count ? messages[note.afterIndex] : nil
@@ -538,9 +543,16 @@ public struct SequenceLayout: GraphLayoutAlgorithm {
         return config.estimateTextWidth(text, fontSize: fontSize, fontWeight: fontWeight)
     }
 
-    private func measureNoteHeight(_ text: String) -> CGFloat {
-        let lineCount = max(1, text.components(separatedBy: "\n").count)
-        let lineHeight: CGFloat = 16
-        return CGFloat(lineCount) * lineHeight + SequenceConstants.notePadding * 2
+    private func measureMultilineText(_ text: String,
+                                      fontSize: CGFloat,
+                                      fontWeight: Int,
+                                      lineSpacing: CGFloat = 4) -> (width: CGFloat, height: CGFloat) {
+        let lines = text.components(separatedBy: "\n")
+        let nonEmptyLines = lines.isEmpty ? [""] : lines
+        let maxWidth = nonEmptyLines.map { measureText($0, fontSize: fontSize, fontWeight: fontWeight) }.max() ?? 0
+        let lineCount = max(1, nonEmptyLines.count)
+        let lineHeight = ceil(fontSize)
+        let height = CGFloat(lineCount) * lineHeight + CGFloat(max(0, lineCount - 1)) * lineSpacing
+        return (maxWidth, height)
     }
 }

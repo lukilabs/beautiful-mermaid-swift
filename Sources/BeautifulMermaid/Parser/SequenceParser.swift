@@ -401,7 +401,7 @@ public struct SequenceParser {
             return nil
         }
 
-        let text = textPart.trimmingCharacters(in: .whitespaces)
+        let text = normalizeHtmlBreaks(in: textPart).trimmingCharacters(in: .whitespaces)
 
         return SequenceNote(
             actorIds: actorIds,
@@ -409,5 +409,9 @@ public struct SequenceParser {
             position: pos,
             afterIndex: afterIndex
         )
+    }
+
+    private func normalizeHtmlBreaks(in text: String) -> String {
+        text.replacingOccurrences(of: #"(?i)<br\s*/?>"#, with: "\n", options: .regularExpression)
     }
 }
