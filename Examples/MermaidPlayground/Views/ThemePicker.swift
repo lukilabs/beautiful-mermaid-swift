@@ -8,6 +8,7 @@
 import SwiftUI
 import BeautifulMermaid
 
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, *)
 struct ThemePicker: View {
     @Bindable var config: PlaygroundConfiguration
 
@@ -134,9 +135,4 @@ struct ThemeCircle: View {
                     .stroke(Color.secondary.opacity(0.5), lineWidth: 1)
             )
     }
-}
-
-#Preview {
-    ThemePicker(config: PlaygroundConfiguration.shared)
-        .padding()
 }

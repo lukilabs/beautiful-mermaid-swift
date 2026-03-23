@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "description": "Step-by-step verification test diagrams for TypeScript/Swift Mermaid implementation comparison",
+  "version": "2.0.0",
+  "description": "Mermaid diagram test suite — covers flowchart, state, sequence, class, ER, and XY chart types",
   "diagrams": [
     {
       "id": "flow-1-simple",
@@ -45,109 +45,121 @@
       "source": "graph TD\n  A[Node 1] ---|related| B[Node 2]\n  B -.- C[Node 3]\n  C === D[Node 4]"
     },
     {
-      "id": "flow-8-bidirectional",
+      "id": "flow-8-text-embedded",
+      "category": "flowchart",
+      "name": "Text-Embedded Labels",
+      "source": "flowchart TD\n  A(Start) --> B{Is it sunny?}\n  B -- Yes --> C[Go to the park]\n  B -- No --> D[Stay indoors]\n  C --> E[Finish]\n  D --> E"
+    },
+    {
+      "id": "flow-9-bidirectional",
       "category": "flowchart",
       "name": "Bidirectional Arrows",
       "source": "graph LR\n  A[Client] <-->|sync| B[Server]\n  B <-.->|heartbeat| C[Monitor]\n  C <==>|data| D[Storage]"
     },
     {
-      "id": "flow-9-parallel",
+      "id": "flow-10-parallel",
       "category": "flowchart",
       "name": "Parallel Links (&)",
       "source": "graph TD\n  A[Input] & B[Config] --> C[Processor]\n  C --> D[Output] & E[Log]"
     },
     {
-      "id": "flow-10-chained",
+      "id": "flow-11-chained",
       "category": "flowchart",
       "name": "Chained Edges",
       "source": "graph LR\n  A[Step 1] --> B[Step 2] --> C[Step 3] --> D[Step 4] --> E[Step 5]"
     },
     {
-      "id": "flow-11-direction-lr",
+      "id": "flow-12-linkstyle-colored",
+      "category": "flowchart",
+      "name": "linkStyle: Color-Coded Edges",
+      "source": "graph TD\n  A[Start] --> B{Decision}\n  B -->|Yes| C[Accept]\n  B -->|No| D[Reject]\n  C --> E[Done]\n  D --> E\n  linkStyle 0 stroke:#7aa2f7,stroke-width:3px\n  linkStyle 1 stroke:#9ece6a,stroke-width:2px\n  linkStyle 2 stroke:#f7768e,stroke-width:2px\n  linkStyle default stroke:#565f89"
+    },
+    {
+      "id": "flow-13-linkstyle-override",
+      "category": "flowchart",
+      "name": "linkStyle: Default + Override",
+      "source": "graph LR\n  A[Request] --> B[Auth]\n  B --> C[Process]\n  C --> D[Response]\n  B --> E[Reject]\n  linkStyle default stroke:#6b7280,stroke-width:1px\n  linkStyle 0,1,2 stroke:#22c55e,stroke-width:2px\n  linkStyle 3 stroke:#ef4444,stroke-width:3px"
+    },
+    {
+      "id": "flow-14-direction-lr",
       "category": "flowchart",
       "name": "Direction: Left-Right",
       "source": "graph LR\n  A[Input] --> B[Transform] --> C[Output]"
     },
     {
-      "id": "flow-12-direction-bt",
+      "id": "flow-15-direction-bt",
       "category": "flowchart",
       "name": "Direction: Bottom-Top",
       "source": "graph BT\n  A[Foundation] --> B[Layer 2] --> C[Top]"
     },
     {
-      "id": "flow-13-subgraphs",
+      "id": "flow-16-subgraphs",
       "category": "flowchart",
       "name": "Subgraphs",
       "source": "graph TD\n  subgraph Frontend\n    A[React App] --> B[State Manager]\n  end\n  subgraph Backend\n    C[API Server] --> D[Database]\n  end\n  B --> C"
     },
     {
-      "id": "flow-14-nested-subgraphs",
+      "id": "flow-17-nested-subgraphs",
       "category": "flowchart",
       "name": "Nested Subgraphs",
       "source": "graph TD\n  subgraph Cloud\n    subgraph us-east [US East Region]\n      A[Web Server] --> B[App Server]\n    end\n    subgraph us-west [US West Region]\n      C[Web Server] --> D[App Server]\n    end\n  end\n  E[Load Balancer] --> A\n  E --> C"
     },
     {
-      "id": "flow-15-subgraph-direction",
+      "id": "flow-18-subgraph-direction",
       "category": "flowchart",
       "name": "Subgraph Direction Override",
       "source": "graph TD\n  subgraph pipeline [Processing Pipeline]\n    direction LR\n    A[Input] --> B[Parse] --> C[Transform] --> D[Output]\n  end\n  E[Source] --> A\n  D --> F[Sink]"
     },
     {
-      "id": "flow-16-class-shorthand",
+      "id": "flow-19-class-shorthand",
       "category": "flowchart",
-      "name": "Class Shorthand (:::)",
+      "name": "::: Class Shorthand",
       "source": "graph TD\n  A[Normal]:::default --> B[Highlighted]:::highlight --> C[Error]:::error\n  classDef default fill:#f4f4f5,stroke:#a1a1aa\n  classDef highlight fill:#fbbf24,stroke:#d97706\n  classDef error fill:#ef4444,stroke:#dc2626"
     },
     {
-      "id": "flow-17-inline-style",
+      "id": "flow-20-inline-style",
       "category": "flowchart",
       "name": "Inline Style Overrides",
       "source": "graph TD\n  A[Default] --> B[Custom Colors] --> C[Another Custom]\n  style B fill:#3b82f6,stroke:#1d4ed8,color:#ffffff\n  style C fill:#10b981,stroke:#059669"
     },
     {
-      "id": "flow-18-cicd-pipeline",
+      "id": "flow-21-cicd-pipeline",
       "category": "flowchart",
       "name": "CI/CD Pipeline",
       "source": "graph TD\n  subgraph ci [CI Pipeline]\n    A[Push Code] --> B{Tests Pass?}\n    B -->|Yes| C[Build Image]\n    B -->|No| D[Fix & Retry]\n    D -.-> A\n  end\n  C --> E([Deploy Staging])\n  E --> F{QA Approved?}\n  F -->|Yes| G((Production))\n  F -->|No| D"
     },
     {
-      "id": "flow-19-system-architecture",
+      "id": "flow-22-system-architecture",
       "category": "flowchart",
       "name": "System Architecture",
       "source": "graph LR\n  subgraph clients [Client Layer]\n    A([Web App]) --> B[API Gateway]\n    C([Mobile App]) --> B\n  end\n  subgraph services [Service Layer]\n    B --> D[Auth Service]\n    B --> E[User Service]\n    B --> F[Order Service]\n  end\n  subgraph data [Data Layer]\n    D --> G[(Auth DB)]\n    E --> H[(User DB)]\n    F --> I[(Order DB)]\n    F --> J([Message Queue])\n  end"
     },
     {
-      "id": "flow-19b-services-first",
-      "category": "flowchart",
-      "name": "System Architecture (Services First)",
-      "source": "graph LR\n  subgraph services [Service Layer]\n    B[API Gateway] --> D[Auth Service]\n    B --> E[User Service]\n    B --> F[Order Service]\n  end\n  subgraph clients [Client Layer]\n    A([Web App]) --> B\n    C([Mobile App]) --> B\n  end\n  subgraph data [Data Layer]\n    D --> G[(Auth DB)]\n    E --> H[(User DB)]\n    F --> I[(Order DB)]\n    F --> J([Message Queue])\n  end"
-    },
-    {
-      "id": "flow-20-decision-tree",
+      "id": "flow-23-decision-tree",
       "category": "flowchart",
       "name": "Decision Tree",
       "source": "graph TD\n  A{Is it raining?} -->|Yes| B{Have umbrella?}\n  A -->|No| C([Go outside])\n  B -->|Yes| D([Go with umbrella])\n  B -->|No| E{Is it heavy?}\n  E -->|Yes| F([Stay inside])\n  E -->|No| G([Run for it])"
     },
     {
-      "id": "flow-21-git-branching",
+      "id": "flow-24-git-branching",
       "category": "flowchart",
       "name": "Git Branching Workflow",
       "source": "graph LR\n  A[main] --> B[develop]\n  B --> C[feature/auth]\n  B --> D[feature/ui]\n  C --> E{PR Review}\n  D --> E\n  E -->|approved| B\n  B --> F[release/1.0]\n  F --> G{Tests?}\n  G -->|pass| A\n  G -->|fail| F"
     },
     {
-      "id": "flow-22-self-loop",
+      "id": "flow-25-self-loop",
       "category": "flowchart",
       "name": "Self-Loop Edge",
       "source": "graph TD\n  A[Retry Node] --> A"
     },
     {
-      "id": "flow-23-self-loop-label",
+      "id": "flow-26-self-loop-label",
       "category": "flowchart",
       "name": "Self-Loop with Label",
       "source": "graph TD\n  A[Process] -->|retry| A\n  A --> B[Done]"
     },
     {
-      "id": "flow-24-multiple-self-loops",
+      "id": "flow-27-multiple-self-loops",
       "category": "flowchart",
       "name": "Multiple Self-Loops",
       "source": "graph TD\n  A[Start] --> B[Validate]\n  B -->|invalid| B\n  B -->|valid| C[Process]\n  C -->|retry| C\n  C --> D[End]"
@@ -169,6 +181,12 @@
       "category": "state",
       "name": "Connection Lifecycle",
       "source": "stateDiagram-v2\n  [*] --> Closed\n  Closed --> Connecting : connect\n  Connecting --> Connected : success\n  Connecting --> Closed : timeout\n  Connected --> Disconnecting : close\n  Connected --> Reconnecting : error\n  Reconnecting --> Connected : success\n  Reconnecting --> Closed : max_retries\n  Disconnecting --> Closed : done\n  Closed --> [*]"
+    },
+    {
+      "id": "state-4-cjk",
+      "category": "state",
+      "name": "CJK State Names",
+      "source": "stateDiagram-v2\n  [*] --> 空闲\n  空闲 --> 处理中 : 提交\n  处理中 --> 完成 : 成功\n  处理中 --> 错误 : 失败\n  错误 --> 空闲 : 重试\n  完成 --> [*]"
     },
     {
       "id": "seq-1-basic",
@@ -261,6 +279,12 @@
       "source": "sequenceDiagram\n  participant G as Gateway\n  participant A as Auth\n  participant U as Users\n  participant O as Orders\n  participant N as Notify\n  G->>A: Validate token\n  A-->>G: Valid\n  par Fetch data\n    G->>U: Get user\n    U-->>G: User data\n  and\n    G->>O: Get orders\n    O-->>G: Order list\n  end\n  G->>N: Send notification\n  N-->>G: Queued\n  Note over G: Aggregate response"
     },
     {
+      "id": "seq-16-self-notes",
+      "category": "sequence",
+      "name": "Self-Messages with Notes",
+      "source": "sequenceDiagram\n  participant User\n  participant Main as Main Process\n  participant Renderer\n  participant Timer as 3s Fallback Timer\n  User->>Main: CMD+W\n  Main->>Main: event.preventDefault()\n  Main->>Renderer: WINDOW_CLOSE_REQUESTED\n  Main->>Timer: Start 3s timer\n  alt Multiple panels\n    Renderer->>Renderer: closePanel(focusedId)\n    Note over Renderer: Panel removed\n    Note over Renderer: No confirmCloseWindow!\n    Timer-->>Main: 3s elapsed → window.destroy()\n  else Single panel\n    Renderer->>Renderer: closePanel(lastId)\n    Note over Renderer: Stack becomes []\n    Renderer->>Renderer: Auto-select fires → new panel created!\n    Note over Renderer: Panel reopens\n    Timer-->>Main: 3s elapsed → window.destroy()\n  end"
+    },
+    {
       "id": "class-1-basic",
       "category": "class",
       "name": "Basic Class",
@@ -341,7 +365,7 @@
     {
       "id": "class-14-observer",
       "category": "class",
-      "name": "Design Pattern - Observer",
+      "name": "Design Pattern \u2014 Observer",
       "source": "classDiagram\n  class Subject {\n    <<interface>>\n    +attach(Observer) void\n    +detach(Observer) void\n    +notify() void\n  }\n  class Observer {\n    <<interface>>\n    +update() void\n  }\n  class EventEmitter {\n    -List~Observer~ observers\n    +attach(Observer) void\n    +detach(Observer) void\n    +notify() void\n  }\n  class Logger {\n    +update() void\n  }\n  class Alerter {\n    +update() void\n  }\n  Subject <|.. EventEmitter\n  Observer <|.. Logger\n  Observer <|.. Alerter\n  EventEmitter --> Observer"
     },
     {
@@ -439,16 +463,87 @@
       "category": "er",
       "name": "School Management Schema",
       "source": "erDiagram\n  STUDENT {\n    int id PK\n    string name\n    date dob\n    string grade\n  }\n  TEACHER {\n    int id PK\n    string name\n    string department\n  }\n  COURSE {\n    int id PK\n    string title\n    int teacher_id FK\n    int credits\n  }\n  ENROLLMENT {\n    int id PK\n    int student_id FK\n    int course_id FK\n    string semester\n    float grade\n  }\n  TEACHER ||--o{ COURSE : teaches\n  STUDENT ||--o{ ENROLLMENT : enrolled\n  COURSE ||--o{ ENROLLMENT : has"
+    },
+    {
+      "id": "xychart-1-bar",
+      "category": "xychart",
+      "name": "Simple Bar Chart",
+      "source": "xychart-beta\n    title \"Product Sales\"\n    x-axis [Widgets, Gadgets, Gizmos, Doodads, Thingamajigs]\n    bar [150, 230, 180, 95, 310]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-2-line",
+      "category": "xychart",
+      "name": "Line Chart",
+      "source": "xychart-beta\n    title \"Revenue Growth\"\n    x-axis [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]\n    line [320, 420, 540, 680, 820, 950, 1080, 1200]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-3-bar-line",
+      "category": "xychart",
+      "name": "Bar and Line Overlay",
+      "source": "xychart-beta\n    title \"Monthly Revenue\"\n    x-axis \"Month\" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]\n    y-axis \"Revenue (USD)\" 0 --> 10000\n    bar [4200, 5000, 5800, 6200, 5500, 7000, 7800, 7200, 8400, 8100, 9000, 9200]\n    line [4200, 5000, 5800, 6200, 5500, 7000, 7800, 7200, 8400, 8100, 9000, 9200]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-4-horizontal",
+      "category": "xychart",
+      "name": "Horizontal Bars",
+      "source": "xychart-beta horizontal\n    title \"Language Popularity\"\n    x-axis [Python, JavaScript, Java, Go, Rust]\n    bar [30, 25, 20, 12, 8]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-5-multi-bar",
+      "category": "xychart",
+      "name": "Multiple Bar Series",
+      "source": "xychart-beta\n    title \"2023 vs 2024 Sales\"\n    x-axis [Q1, Q2, Q3, Q4]\n    bar [200, 250, 300, 280]\n    bar [230, 280, 320, 350]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-6-dual-lines",
+      "category": "xychart",
+      "name": "Dual Lines",
+      "source": "xychart-beta\n    title \"Planned vs Actual\"\n    x-axis [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug]\n    line [100, 145, 190, 240, 280, 320, 360, 400]\n    line [90, 130, 185, 235, 275, 340, 380, 420]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-7-numeric-x",
+      "category": "xychart",
+      "name": "Numeric X-Axis",
+      "source": "xychart-beta\n    title \"Distribution Curve\"\n    x-axis 0 --> 100\n    line [4, 7, 13, 21, 31, 43, 58, 71, 84, 91, 95, 91, 84, 71, 58, 43, 31, 21, 13, 7, 4]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-8-12month",
+      "category": "xychart",
+      "name": "12-Month Dataset",
+      "source": "xychart-beta\n    title \"Monthly Active Users (2024)\"\n    x-axis [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]\n    y-axis \"Users\" 0 --> 30000\n    bar [12000, 13500, 15200, 16800, 18500, 20100, 19800, 21500, 23000, 24200, 25800, 28000]\n    line [12000, 13500, 15200, 16800, 18500, 20100, 19800, 21500, 23000, 24200, 25800, 28000]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-9-horizontal-combined",
+      "category": "xychart",
+      "name": "Horizontal Combined",
+      "source": "xychart-beta horizontal\n    title \"Budget vs Actual\"\n    x-axis [Eng, Sales, Marketing, Product, Ops, HR, Finance, Legal]\n    bar [500, 350, 250, 200, 150, 120, 100, 80]\n    line [480, 380, 230, 180, 160, 110, 95, 75]",
+      "options": { "interactive": true }
+    },
+    {
+      "id": "xychart-10-burndown",
+      "category": "xychart",
+      "name": "Sprint Burndown",
+      "source": "xychart-beta\n    title \"Sprint Burndown\"\n    x-axis [D1, D2, D3, D4, D5, D6, D7, D8, D9, D10]\n    y-axis \"Story Points\" 0 --> 80\n    line [72, 65, 58, 50, 45, 38, 30, 22, 12, 0]\n    line [72, 65, 58, 50, 43, 36, 29, 22, 14, 0]",
+      "options": { "interactive": true }
     }
   ],
   "metadata": {
-    "totalCount": 72,
+    "totalCount": 87,
     "categories": {
-      "flowchart": 24,
-      "state": 3,
-      "sequence": 15,
+      "flowchart": 27,
+      "state": 4,
+      "sequence": 16,
       "class": 16,
-      "er": 14
+      "er": 14,
+      "xychart": 10
     }
   }
 }

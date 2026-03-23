@@ -10,6 +10,7 @@ import BeautifulMermaid
 
 /// Singleton configuration for the playground
 @Observable
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, *)
 public class PlaygroundConfiguration {
     public static let shared = PlaygroundConfiguration()
 
@@ -27,46 +28,6 @@ public class PlaygroundConfiguration {
     // MARK: - Theme
 
     public var theme: DiagramTheme = .default
-
-    // MARK: - Direction
-
-    public var direction: Direction = .topDown
-
-    // MARK: - Layout Settings
-
-    public var nodePadding: CGFloat = 16
-
-    public var edgeSpacing: CGFloat = 10
-
-    public var rankSeparation: CGFloat = 50
-
-    public var fontSize: CGFloat = 14
-
-    // MARK: - Color Overrides
-
-    public var backgroundOverride: Color?
-
-    public var foregroundOverride: Color?
-
-    public var accentOverride: Color?
-
-    public var lineOverride: Color?
-
-    // MARK: - Reset Methods
-
-    public func resetColorOverrides() {
-        backgroundOverride = nil
-        foregroundOverride = nil
-        accentOverride = nil
-        lineOverride = nil
-    }
-
-    public func resetLayoutDefaults() {
-        nodePadding = 16
-        edgeSpacing = 10
-        rankSeparation = 50
-        fontSize = 14
-    }
 
     private init() {}
 }

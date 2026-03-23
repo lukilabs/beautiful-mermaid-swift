@@ -8,6 +8,7 @@
 import SwiftUI
 import BeautifulMermaid
 
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, *)
 struct SourceEditor: View {
     @Bindable var config: PlaygroundConfiguration
 
@@ -51,10 +52,4 @@ struct SourceEditor: View {
             }
         }
     }
-}
-
-#Preview {
-    SourceEditor(config: PlaygroundConfiguration.shared)
-        .frame(height: 300)
-        .padding()
 }

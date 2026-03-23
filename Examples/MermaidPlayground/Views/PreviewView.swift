@@ -8,6 +8,7 @@
 import SwiftUI
 import BeautifulMermaid
 
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, *)
 struct PreviewView: View {
     @Bindable var config: PlaygroundConfiguration
 
@@ -28,27 +29,30 @@ struct PreviewView: View {
                 Color(config.theme.background)
                     .ignoresSafeArea()
 
-                // Zoomable content
-                let layoutConfig = buildLayoutConfig()
-                let baseSize = calculateContentSize(
-                    diagramBounds: diagramBounds,
-                    viewSize: geometry.size
-                )
+                // zoomScale is the actual diagram scale: 1.0 = natural size.
+                // The MermaidView frame matches the zoomed diagram size so it
+                // re-renders at native resolution (crisp at any zoom level).
+                let scaledWidth = max(diagramBounds.width * zoomScale, 1)
+                let scaledHeight = max(diagramBounds.height * zoomScale, 1)
 
                 ScrollView([.horizontal, .vertical], showsIndicators: true) {
-                    MermaidViewRepresentable(
-                        source: config.source,
-                        theme: config.theme,
-                        layoutConfig: layoutConfig,
-                        parseError: $parseError,
-                        diagramBounds: $diagramBounds
-                    )
-                    .frame(width: baseSize.width, height: baseSize.height)
-                    .scaleEffect(zoomScale, anchor: .center)
-                    .frame(
-                        width: max(baseSize.width * zoomScale, geometry.size.width),
-                        height: max(baseSize.height * zoomScale, geometry.size.height)
-                    )
+                    ZStack {
+                        // Scroll content sized to at least the viewport
+                        Color.clear
+                            .frame(
+                                width: max(scaledWidth, geometry.size.width),
+                                height: max(scaledHeight, geometry.size.height)
+                            )
+
+                        // MermaidView at exact zoomed diagram size, centered
+                        MermaidViewRepresentable(
+                            source: config.source,
+                            theme: config.theme,
+                            parseError: $parseError,
+                            diagramBounds: $diagramBounds
+                        )
+                        .frame(width: scaledWidth, height: scaledHeight)
+                    }
                 }
                 .defaultScrollAnchor(.center)
                 .scrollBounceBehavior(.basedOnSize)
@@ -103,54 +107,84 @@ struct PreviewView: View {
                             .fill(Color(config.theme.background).opacity(0.9))
                     )
                 }
+
+                #if targetEnvironment(macCatalyst)
+                // Zoom controls
+                VStack {
+                    Spacer()
+                    HStack(spacing: 0) {
+                        Spacer()
+                        HStack(spacing: 2) {
+                            Button {
+                                let newScale = max(zoomScale / 1.25, minZoom)
+                                zoomScale = newScale
+                                lastZoomScale = newScale
+                            } label: {
+                                Image(systemName: "minus")
+                                    .frame(width: 28, height: 28)
+                            }
+
+                            Divider()
+                                .frame(height: 18)
+
+                            Text("\(Int(round(zoomScale * 100)))%")
+                                .font(.system(size: 11, weight: .medium, design: .monospaced))
+                                .frame(width: 44)
+
+                            Divider()
+                                .frame(height: 18)
+
+                            Button {
+                                let newScale = min(zoomScale * 1.25, maxZoom)
+                                zoomScale = newScale
+                                lastZoomScale = newScale
+                            } label: {
+                                Image(systemName: "plus")
+                                    .frame(width: 28, height: 28)
+                            }
+
+                            Divider()
+                                .frame(height: 18)
+
+                            Button {
+                                let fitScale = calculateFitScale(
+                                    diagramBounds: diagramBounds,
+                                    viewSize: geometry.size
+                                )
+                                zoomScale = fitScale
+                                lastZoomScale = fitScale
+                            } label: {
+                                Image(systemName: "arrow.up.left.and.arrow.down.right")
+                                    .frame(width: 28, height: 28)
+                            }
+                        }
+                        .font(.system(size: 13))
+                        .foregroundColor(Color(config.theme.foreground))
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 4)
+                        .background(
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color(config.theme.background).opacity(0.85))
+                                .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 2)
+                        )
+                        .padding(12)
+                    }
+                }
+                #endif
             }
         }
     }
 
-    private func buildLayoutConfig() -> LayoutConfig {
-        var layoutConfig = LayoutConfig()
-        layoutConfig.nodePadding = CGSize(
-            width: config.nodePadding,
-            height: config.nodePadding * 0.625
-        )
-        layoutConfig.edgeSeparation = config.edgeSpacing
-        layoutConfig.rankSeparation = config.rankSeparation
-        layoutConfig.font = BMFont.systemFont(ofSize: config.fontSize)
-        layoutConfig.direction = config.direction
-        return layoutConfig
-    }
-
-    private func calculateContentSize(diagramBounds: CGRect, viewSize: CGSize) -> CGSize {
-        let padding: CGFloat = 40
-        let minWidth = max(viewSize.width, 100)
-        let minHeight = max(viewSize.height, 100)
-
-        let contentWidth = max(diagramBounds.width + padding * 2, minWidth)
-        let contentHeight = max(diagramBounds.height + padding * 2, minHeight)
-
-        return CGSize(width: contentWidth, height: contentHeight)
-    }
-
+    /// Calculate the zoom scale that fits the diagram within the view
     private func calculateFitScale(diagramBounds: CGRect, viewSize: CGSize) -> CGFloat {
         guard diagramBounds.width > 0 && diagramBounds.height > 0 else {
             return 1.0
         }
 
-        let padding: CGFloat = 40
-        let availableWidth = viewSize.width - padding * 2
-        let availableHeight = viewSize.height - padding * 2
+        let scaleX = viewSize.width / diagramBounds.width
+        let scaleY = viewSize.height / diagramBounds.height
 
-        let scaleX = availableWidth / diagramBounds.width
-        let scaleY = availableHeight / diagramBounds.height
-
-        // Fit to view (use the smaller scale to ensure diagram fits)
-        let fitScale = min(scaleX, scaleY)
-
-        // Clamp to allowed zoom range
-        return min(max(fitScale, minZoom), maxZoom)
+        // Fit to view, clamped to zoom range
+        return min(max(min(scaleX, scaleY), minZoom), maxZoom)
     }
-}
-
-#Preview {
-    PreviewView(config: PlaygroundConfiguration.shared)
 }

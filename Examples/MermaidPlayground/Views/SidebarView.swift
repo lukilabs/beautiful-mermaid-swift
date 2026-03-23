@@ -10,6 +10,7 @@ import SwiftUI
 import BeautifulMermaid
 import UniformTypeIdentifiers
 
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, *)
 struct SidebarView: View {
     @Bindable var config: PlaygroundConfiguration
 
@@ -31,11 +32,6 @@ struct SidebarView: View {
                     // Theme Section
                     sectionHeader("Theme")
                     ThemePicker(config: config)
-                        .padding(.top, -10)
-
-                    // Direction Section
-                    sectionHeader("Direction")
-                    directionPicker
                         .padding(.top, -10)
 
                     // Export Button (no header needed)
@@ -86,7 +82,7 @@ struct SidebarView: View {
 
     private var testDiagramPicker: some View {
         Menu {
-            ForEach(["flowchart", "state", "sequence", "class", "er"], id: \.self) { category in
+            ForEach(["flowchart", "state", "sequence", "class", "er", "xychart"], id: \.self) { category in
                 let diagrams = TestDiagrams.diagrams(for: category)
                 if !diagrams.isEmpty {
                     Menu(category.capitalized) {
@@ -120,20 +116,6 @@ struct SidebarView: View {
         .buttonStyle(.plain)
     }
 
-    // MARK: - Direction Picker
-
-    private var directionPicker: some View {
-        Picker("Direction", selection: $config.direction) {
-            Text("TB").tag(Direction.topDown)
-            Text("LR").tag(Direction.leftRight)
-            Text("BT").tag(Direction.bottomUp)
-            Text("RL").tag(Direction.rightLeft)
-        }
-        .pickerStyle(.segmented)
-        .labelsHidden()
-        .frame(maxWidth: .infinity)
-    }
-
     // MARK: - Export Button
 
     private var exportButton: some View {
@@ -159,28 +141,24 @@ struct SidebarView: View {
     // MARK: - Export Logic
 
     private func exportPNG() {
-        // Build layout config from playground configuration
-        var layoutConfig = LayoutConfig()
-        layoutConfig.nodePadding = CGSize(width: config.nodePadding, height: config.nodePadding * 0.625)
-        layoutConfig.edgeSeparation = config.edgeSpacing
-        layoutConfig.rankSeparation = config.rankSeparation
-        layoutConfig.font = BMFont.systemFont(ofSize: config.fontSize)
-        layoutConfig.direction = config.direction
+        // Use MermaidLayer for export — same rendering pipeline as the live preview
+        let layer = MermaidLayer()
+        layer.theme = config.theme
+        layer.source = config.source
+
+        if let error = layer.parseError {
+            showError(error.localizedDescription)
+            return
+        }
+
+        guard let image = layer.renderImage(scale: 2.0) else {
+            showError("Failed to render diagram")
+            return
+        }
 
         do {
-            // Create renderer with current theme
-            let renderer = MermaidImageRenderer(theme: config.theme)
-            renderer.scale = 2.0  // High resolution export
-            renderer.layoutConfig = layoutConfig
-
-            // Render the image
-            guard let image = try renderer.renderImage(from: config.source) else {
-                showError("Failed to render diagram")
-                return
-            }
-
             // Convert to PNG data
-            #if canImport(UIKit)
+            #if targetEnvironment(macCatalyst) || canImport(UIKit)
             guard let pngData = image.pngData() else {
                 showError("Failed to create PNG data")
                 return
@@ -236,9 +214,4 @@ struct PNGDocument: FileDocument {
         let data = try Data(contentsOf: url)
         return FileWrapper(regularFileWithContents: data)
     }
-}
-
-#Preview {
-    SidebarView(config: PlaygroundConfiguration.shared)
-        .frame(width: 380, height: 700)
 }

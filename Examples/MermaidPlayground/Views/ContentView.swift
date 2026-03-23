@@ -8,6 +8,7 @@
 import SwiftUI
 import BeautifulMermaid
 
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, *)
 struct ContentView: View {
     @SwiftUI.State private var config = PlaygroundConfiguration.shared
     @SwiftUI.State private var columnVisibility: NavigationSplitViewVisibility = .all
@@ -115,7 +116,7 @@ extension BMColor {
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
 
-        #if canImport(UIKit)
+        #if targetEnvironment(macCatalyst) || canImport(UIKit)
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         #elseif canImport(AppKit)
         guard let rgb = usingColorSpace(.sRGB) else { return true }
@@ -126,8 +127,4 @@ extension BMColor {
         let luminance = 0.299 * red + 0.587 * green + 0.114 * blue
         return luminance > 0.5
     }
-}
-
-#Preview {
-    ContentView()
 }
