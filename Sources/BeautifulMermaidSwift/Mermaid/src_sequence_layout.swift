@@ -110,6 +110,19 @@ private func _layoutSequenceDiagramEntry(
             messageY += extra
         }
 
+        // Push messageY down if a note sits between the previous message and this one
+        for note in diagram.notes where note.afterIndex == msgIdx - 1 {
+            let noteLines = note.text.components(separatedBy: "\n")
+            let nonEmpty = noteLines.isEmpty ? [""] : noteLines
+            let lineCount = Double(max(1, nonEmpty.count))
+            let lineHeight = ceil(original_src_styles.FONT_SIZES.edgeLabel)
+            let lineSpacing: Double = 4
+            let noteH = lineCount * lineHeight + max(0, lineCount - 1) * lineSpacing + _SEQ.notePadding * 2
+            let noteBottom = messageY + 4 + noteH
+            let requiredY = noteBottom + _SEQ.noteGap
+            messageY = max(messageY, requiredY)
+        }
+
         let x1 = actorCenterX[fromIdx]
         let x2 = actorCenterX[toIdx]
 

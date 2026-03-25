@@ -180,7 +180,7 @@ private func _buildElkGraph(_ graph: _ParsedGraph) -> _ElkNode {
 
     // Build set of all nodes claimed by any subgraph
     let allClaimedNodes = Set(subgraphOwnership.values.flatMap { $0 })
-    let nodeById = Dictionary(uniqueKeysWithValues: graph.nodesInOrder.map { ($0.id, $0.node) })
+    let nodeById = Dictionary(graph.nodesInOrder.map { ($0.id, $0.node) }, uniquingKeysWith: { _, last in last })
 
     // Determine which subgraph (deepest) contains a node
     func _deepestSubgraph(for nodeId: String, in subs: [original_src_types.MermaidSubgraph]) -> String? {
@@ -646,7 +646,7 @@ private func _alignLayerNodes(
 
     // Cluster into layers using single-linkage with connected-pair exclusion
     var layers: [[Int]] = [] // indices into `nodes`
-    let nodeIndexMap = Dictionary(uniqueKeysWithValues: nodes.enumerated().map { ($1.id, $0) })
+    let nodeIndexMap = Dictionary(nodes.enumerated().map { ($1.id, $0) }, uniquingKeysWith: { _, last in last })
     let sortedIndices = sorted.compactMap { nodeIndexMap[$0.id] }
 
     var currentLayer: [Int] = [sortedIndices[0]]
@@ -743,7 +743,7 @@ private func _bundleEdgePaths(
     _ groups: [_PositionedGroupPayload],
     _ direction: original_src_types.Direction
 ) {
-    let nodeMap = Dictionary(uniqueKeysWithValues: nodes.map { ($0.id, $0) })
+    let nodeMap = Dictionary(nodes.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
     var processed = Set<Int>() // edge indices
 
     let isLR = direction == .LR
@@ -1009,7 +1009,7 @@ private func _extractPositionedGraph(
     _ laidOut: _ElkNode,
     diagramType: DiagramType
 ) -> PositionedGraph {
-    let nodeById = Dictionary(uniqueKeysWithValues: source.nodesInOrder.map { ($0.id, $0.node) })
+    let nodeById = Dictionary(source.nodesInOrder.map { ($0.id, $0.node) }, uniquingKeysWith: { _, last in last })
     let graphHeight = _asDouble(laidOut["height"]) ?? 0
 
     // Collect nodes from root and all compound children (subgraphs) recursively
@@ -1131,7 +1131,7 @@ private func _extractPositionedGraph(
     _bundleEdgePaths(&edges, nodes, groups, source.direction)
 
     // Shape clipping: adjust edge endpoints to actual shape boundaries
-    let nodeMap = Dictionary(uniqueKeysWithValues: nodes.map { ($0.id, $0) })
+    let nodeMap = Dictionary(nodes.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
     for i in edges.indices {
         guard edges[i].points.count >= 2 else { continue }
         if let srcNode = nodeMap[edges[i].source] {
@@ -1298,7 +1298,7 @@ private func _layoutGraphWithDiagnosticsEntry(
 private func _buildElkGraphNoCrossEdges(_ graph: _ParsedGraph) -> _ElkNode {
     let subgraphOwnership = _buildSubgraphOwnership(graph.subgraphs)
     let allClaimedNodes = Set(subgraphOwnership.values.flatMap { $0 })
-    let nodeById = Dictionary(uniqueKeysWithValues: graph.nodesInOrder.map { ($0.id, $0.node) })
+    let nodeById = Dictionary(graph.nodesInOrder.map { ($0.id, $0.node) }, uniquingKeysWith: { _, last in last })
 
     func _deepestSubgraph(for nodeId: String, in subs: [original_src_types.MermaidSubgraph]) -> String? {
         for sub in subs {

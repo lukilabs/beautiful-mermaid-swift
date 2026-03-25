@@ -143,12 +143,12 @@ private func _bmToAsciiTypeGraph(_ graph: original_src_ascii_converter.AsciiGrap
         )
     }
 
-    let grid: [String: AsciiNode] = Dictionary(uniqueKeysWithValues: graph.grid.compactMap { key, node in
+    let grid: [String: AsciiNode] = Dictionary(graph.grid.compactMap { key, node -> (String, AsciiNode)? in
         guard let mapped = nodesByKey["\(node.name)#\(node.index)"] else {
             return nil
         }
         return (key, mapped)
-    })
+    }, uniquingKeysWith: { _, last in last })
 
     return AsciiGraph(
         nodes: nodes,

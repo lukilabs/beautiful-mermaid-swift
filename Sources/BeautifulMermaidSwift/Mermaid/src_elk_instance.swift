@@ -151,7 +151,7 @@ private func _layoutChildren(
     let nodeInfo = children.compactMap { _extractNodeDimensions($0) }
     let ids = nodeInfo.map { $0.id }
     let idSet = Set(ids)
-    let idToIndex = Dictionary(uniqueKeysWithValues: ids.enumerated().map { ($1, $0) })
+    let idToIndex = Dictionary(ids.enumerated().map { ($1, $0) }, uniquingKeysWith: { _, last in last })
 
     var predecessors = Array(repeating: [Int](), count: nodeInfo.count)
     var indegree = Array(repeating: 0, count: nodeInfo.count)

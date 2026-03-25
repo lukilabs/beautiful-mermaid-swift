@@ -4,3 +4,5 @@
 xcuserdata/
 __pycache__/
 *.pyc
+visual-report.html
+Package.resolved

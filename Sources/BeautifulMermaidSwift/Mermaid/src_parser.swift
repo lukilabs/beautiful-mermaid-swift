@@ -21,6 +21,7 @@ private struct _WorkingGraph {
     var nodeOrder: [String] = []
     var edges: [ParsedEdge] = []
     var subgraphs: [ParsedSubgraph] = []
+    var subgraphIds: Set<String> = []
     var classDefs: [String: [String: String]] = [:]
     var classAssignments: [String: String] = [:]
     var nodeStyles: [String: [String: String]] = [:]
@@ -152,6 +153,26 @@ private func _parseFlowchart(_ lines: [String]) throws -> ParsedGraph {
         return graph.toParsedGraph()
     }
 
+    // Pre-scan: collect all subgraph IDs so forward-referenced subgraphs aren't
+    // mistaken for bare nodes during edge parsing.
+    for line in lines.dropFirst() {
+        if let subgraphMatch = _regexGroups(#"^subgraph\s+(.+)$"#, line),
+           let restRaw = subgraphMatch[safe: 1]
+        {
+            let rest = restRaw.trimmingCharacters(in: .whitespacesAndNewlines)
+            if let bracketMatch = _regexGroups(#"^([\w-]+)\s*\[(.+)\]$"#, rest),
+               let foundId = bracketMatch[safe: 1]
+            {
+                graph.subgraphIds.insert(foundId)
+            } else {
+                let id = rest
+                    .replacingOccurrences(of: #"\s+"#, with: "_", options: .regularExpression)
+                    .replacingOccurrences(of: #"[^\w]"#, with: "", options: .regularExpression)
+                graph.subgraphIds.insert(id)
+            }
+        }
+    }
+
     for line in lines.dropFirst() {
         if let classDefMatch = _regexGroups(#"^classDef\s+(\w+)\s+(.+)$"#, line),
            let name = classDefMatch[safe: 1],
@@ -233,6 +254,7 @@ private func _parseFlowchart(_ lines: [String]) throws -> ParsedGraph {
                     .replacingOccurrences(of: #"[^\w]"#, with: "", options: .regularExpression)
             }
 
+            graph.subgraphIds.insert(id)
             subgraphStack.append(ParsedSubgraph(id: id, label: label, nodeIds: [], children: [], direction: nil))
             continue
         }
@@ -538,7 +560,7 @@ private func _consumeNode(_ text: String, graph: inout _WorkingGraph, subgraphSt
        let bareId = bare[safe: 1]
     {
         id = bareId
-        if graph.nodesById[bareId] == nil {
+        if graph.nodesById[bareId] == nil && !graph.subgraphIds.contains(bareId) {
             _registerNode(&graph, &subgraphStack, ParsedNode(id: bareId, label: bareId, shape: .rectangle))
         }
         remaining = String(text.dropFirst(full.count))

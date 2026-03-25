@@ -32,19 +32,19 @@ public final class MermaidImageRenderer {
     }
 
     /// Render a Mermaid diagram to an image using the CGContext pipeline.
-    public func renderImage(from source: String) throws -> BMImage? {
+    public func renderImage(from source: String, scale overrideScale: CGFloat? = nil) throws -> BMImage? {
         guard let prepared = try prepare(from: source) else { return nil }
-        return _renderPrepared(prepared)
+        return _renderPrepared(prepared, scale: overrideScale ?? scale)
     }
 
     /// Render a positioned graph to an image.
-    public func renderImage(from positioned: PositionedGraph) -> BMImage? {
+    public func renderImage(from positioned: PositionedGraph, scale overrideScale: CGFloat? = nil) -> BMImage? {
         let renderer = DiagramRenderer(theme: theme)
         let bounds = CGRect(x: 0, y: 0, width: max(1, positioned.width), height: max(1, positioned.height))
         let prepared = PreparedDiagram(bounds: bounds) { context, renderBounds in
             renderer.render(positioned, in: context, bounds: renderBounds)
         }
-        return _renderPrepared(prepared)
+        return _renderPrepared(prepared, scale: overrideScale ?? scale)
     }
 
     /// Render with custom output size (diagram will be aspect-fit scaled).
@@ -115,14 +115,15 @@ public final class MermaidImageRenderer {
 
     // MARK: - Private
 
-    private func _renderPrepared(_ prepared: PreparedDiagram) -> BMImage? {
+    private func _renderPrepared(_ prepared: PreparedDiagram, scale: CGFloat) -> BMImage? {
         let diagBounds = prepared.bounds
         guard diagBounds.width > 0, diagBounds.height > 0 else { return nil }
 
+        let size = CGSize(width: diagBounds.width, height: diagBounds.height)
+
         #if targetEnvironment(macCatalyst) || canImport(UIKit)
-        let size = CGSize(width: diagBounds.width * scale, height: diagBounds.height * scale)
         let format = UIGraphicsImageRendererFormat()
-        format.scale = 1.0
+        format.scale = scale
 
         let uiRenderer = UIGraphicsImageRenderer(size: size, format: format)
         return uiRenderer.image { rendererContext in
@@ -131,14 +132,13 @@ public final class MermaidImageRenderer {
                 ctx.setFillColor(theme.background.cgColor)
                 ctx.fill(CGRect(origin: .zero, size: size))
             }
-            ctx.scaleBy(x: scale, y: scale)
             ctx.translateBy(x: -diagBounds.minX, y: -diagBounds.minY)
             prepared.render(ctx, diagBounds)
         }
         #elseif canImport(AppKit)
-        let size = NSSize(width: diagBounds.width * scale, height: diagBounds.height * scale)
-        let width = Int(size.width)
-        let height = Int(size.height)
+        let pixelSize = NSSize(width: diagBounds.width * scale, height: diagBounds.height * scale)
+        let width = Int(pixelSize.width)
+        let height = Int(pixelSize.height)
         guard width > 0, height > 0,
               let ctx = CGContext(
                   data: nil, width: width, height: height,
@@ -149,7 +149,7 @@ public final class MermaidImageRenderer {
 
         if !theme.transparent {
             ctx.setFillColor(theme.background.cgColor)
-            ctx.fill(CGRect(origin: .zero, size: size))
+            ctx.fill(CGRect(origin: .zero, size: pixelSize))
         }
 
         ctx.scaleBy(x: scale, y: scale)

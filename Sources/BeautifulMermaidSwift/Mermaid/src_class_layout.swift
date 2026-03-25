@@ -149,7 +149,7 @@ private func extractClassLayout(
     _ diagram: ClassDiagram,
     _ classSizes: ClassSizeMap
 ) -> PositionedClassDiagram {
-    let classLookup = Dictionary(uniqueKeysWithValues: diagram.classes.map { ($0.id, $0) })
+    let classLookup = Dictionary(diagram.classes.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
 
     var positionedClasses: [PositionedClassNode] = []
     for child in _asDictArray(result["children"]) {

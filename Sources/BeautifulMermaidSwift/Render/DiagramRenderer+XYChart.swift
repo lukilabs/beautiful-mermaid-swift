@@ -62,7 +62,7 @@ extension DiagramRenderer {
 
             // Bars
             for bar in chart.bars {
-                let seriesColor = self._xySeriesColor(bar.colorIndex, accentHex: self.theme.accent.flatMap { _hex($0) }, bgHex: _hex(self.theme.background))
+                let seriesColor = self._xySeriesColor(bar.colorIndex, accentHex: _hex(self.theme.effectiveAccent()), bgHex: _hex(self.theme.background))
                 let fillColor = self._mixCGColors(bgColor, seriesColor, ratio: 0.25)
                 let barRect = CGRect(x: bar.x, y: fy(bar.y + bar.height), width: bar.width, height: bar.height)
                 let cr = min(8, bar.width / 2, bar.height / 2)
@@ -79,7 +79,7 @@ extension DiagramRenderer {
             // Lines
             for line in chart.lines {
                 if line.points.isEmpty { continue }
-                let seriesColor = self._xySeriesColor(line.colorIndex, accentHex: self.theme.accent.flatMap { _hex($0) }, bgHex: _hex(self.theme.background))
+                let seriesColor = self._xySeriesColor(line.colorIndex, accentHex: _hex(self.theme.effectiveAccent()), bgHex: _hex(self.theme.background))
                 let flipped = line.points.map { LinePoint(x: $0.x, y: fy($0.y), value: $0.value, label: $0.label) }
 
                 // Shadow
@@ -158,7 +158,7 @@ extension DiagramRenderer {
             let legendFont = BMFont.systemFont(ofSize: 12, weight: .regular)
 
             for item in chart.legend {
-                let seriesColor = self._xySeriesColor(item.colorIndex, accentHex: self.theme.accent.flatMap { _hex($0) }, bgHex: _hex(self.theme.background))
+                let seriesColor = self._xySeriesColor(item.colorIndex, accentHex: _hex(self.theme.effectiveAccent()), bgHex: _hex(self.theme.background))
                 let iy = fy(item.y)
                 let sy = iy  // swatch center matches text visual center
                 if item.type == .bar {
@@ -186,8 +186,8 @@ extension DiagramRenderer {
     }
 
     private func _xySeriesColor(_ index: Int, accentHex: String?, bgHex: String?) -> CGColor {
-        if index == 0 { return (theme.accent ?? BMColor(hex: "#3b82f6")).cgColor }
-        let hex = getSeriesColor(index, accentHex ?? "#3b82f6", bgHex)
+        if index == 0 { return theme.effectiveAccent().cgColor }
+        let hex = getSeriesColor(index, accentHex ?? _hex(theme.effectiveAccent()) ?? "#3b82f6", bgHex)
         return BMColor(hex: hex).cgColor
     }
 

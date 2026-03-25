@@ -153,7 +153,7 @@ private func _extractErLayout(
     _ diagram: ErDiagram,
     _ entitySizes: EntitySizeMap
 ) -> PositionedErDiagram {
-    let entityLookup = Dictionary(uniqueKeysWithValues: diagram.entities.map { ($0.id, $0) })
+    let entityLookup = Dictionary(diagram.entities.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
 
     var positionedEntities: [PositionedErEntity] = []
     for child in result.children ?? [] {
