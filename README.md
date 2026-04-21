@@ -24,7 +24,7 @@ BeautifulMermaid is a native Swift port of [beautiful-mermaid](https://github.co
 - **17 built-in themes** — Tokyo Night, Dracula, Nord, Gruvbox, and more
 - **VS Code theme import** — Load any Shiki/VS Code theme via `ShikiTheme`
 - **Mono mode** — Beautiful diagrams from just 2 colors
-- **SwiftUI integration** — Built-in `MermaidDiagramView` with `@Observable` support
+- **SwiftUI integration** — Built-in `MermaidDiagramView` with a value-type `MermaidDiagram` model
 - **CALayer rendering** — `MermaidLayer` for lightweight, direct Core Graphics rendering
 - **Async rendering** — All render methods available as `async` variants
 - **Pure Swift** — No WebView, no JavaScript

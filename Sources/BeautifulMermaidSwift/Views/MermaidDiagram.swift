@@ -1,7 +1,11 @@
 import SwiftUI
 import CoreGraphics
 
-/// An observable model that manages the Mermaid diagram pipeline (parse -> layout -> render).
+/// A value-type model that manages the Mermaid diagram pipeline (parse -> layout -> render).
+///
+/// Mutating `source`, `theme`, or `layoutConfig` re-runs the pipeline synchronously and refreshes
+/// `preparedDiagram`, `diagramBounds`, and `parseError`. Hold it in `@State` to drive a
+/// ``MermaidDiagramView``.
 ///
 /// Usage:
 /// ```swift
@@ -12,20 +16,18 @@ import CoreGraphics
 ///         .frame(height: 300)
 /// }
 /// ```
-@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, visionOS 1.0, *)
-@Observable
-public final class MermaidDiagram {
+public struct MermaidDiagram {
 
     public var source: String {
-        didSet { if source != oldValue { _prepare() } }
+        didSet { if source != oldValue { prepare() } }
     }
 
     public var theme: DiagramTheme {
-        didSet { if theme != oldValue { _prepare() } }
+        didSet { if theme != oldValue { prepare() } }
     }
 
     public var layoutConfig: LayoutConfig {
-        didSet { if layoutConfig != oldValue { _prepare() } }
+        didSet { if layoutConfig != oldValue { prepare() } }
     }
 
     public private(set) var parseError: Error?
@@ -40,10 +42,10 @@ public final class MermaidDiagram {
         self.source = source
         self.theme = theme
         self.layoutConfig = layoutConfig
-        _prepare()
+        prepare()
     }
 
-    private func _prepare() {
+    private mutating func prepare() {
         parseError = nil
         preparedDiagram = nil
         diagramBounds = .zero
@@ -67,14 +69,14 @@ public final class MermaidDiagram {
     }
 }
 
-// MARK: - MermaidDiagramView convenience init for @Observable model
+// MARK: - MermaidDiagramView convenience init for the value-type model
 
 #if canImport(UIKit)
 import UIKit
 
-@available(iOS 17.0, macCatalyst 17.0, visionOS 1.0, *)
+@available(iOS 16.0, macCatalyst 16.0, visionOS 1.0, *)
 extension MermaidDiagramView {
-    /// Create a diagram view driven by an `@Observable` ``MermaidDiagram`` model.
+    /// Create a diagram view driven by a ``MermaidDiagram`` value.
     public init(_ diagram: MermaidDiagram) {
         self.init(
             source: diagram.source,
@@ -87,9 +89,9 @@ extension MermaidDiagramView {
 #elseif canImport(AppKit)
 import AppKit
 
-@available(macOS 14.0, *)
+@available(macOS 13.0, *)
 extension MermaidDiagramView {
-    /// Create a diagram view driven by an `@Observable` ``MermaidDiagram`` model.
+    /// Create a diagram view driven by a ``MermaidDiagram`` value.
     public init(_ diagram: MermaidDiagram) {
         self.init(
             source: diagram.source,
