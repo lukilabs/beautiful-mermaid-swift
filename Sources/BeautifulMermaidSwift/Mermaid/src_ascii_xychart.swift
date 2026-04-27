@@ -113,7 +113,9 @@ private func _renderVertical(
 
     let valueToRow: (Double) -> Int = { v in
         let t = (v - yRange.min) / (yRange.max - yRange.min == 0 ? 1 : yRange.max - yRange.min)
-        return Int(round(t * Double(plotH - 1)))
+        let scaled = t * Double(plotH - 1)
+        guard scaled.isFinite, abs(scaled) < 1e15 else { return 0 }
+        return Int(round(scaled))
     }
     let bandCenter: (Int) -> Int = { i in plotLeft + (bandW * (2 * i + 1)) / (2) }
 
@@ -258,7 +260,9 @@ private func _renderHorizontal(
 
     let valueToCol: (Double) -> Int = { v in
         let t = (v - yRange.min) / (yRange.max - yRange.min == 0 ? 1 : yRange.max - yRange.min)
-        return plotLeft + Int(round(t * Double(plotW - 1)))
+        let scaled = t * Double(plotW - 1)
+        guard scaled.isFinite, abs(scaled) < 1e15 else { return plotLeft }
+        return plotLeft + Int(round(scaled))
     }
     let bandMid: (Int) -> Int = { i in plotTop + (bandH * (2 * i + 1)) / 2 }
 

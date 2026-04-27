@@ -198,7 +198,7 @@ private func _layoutHorizontal(_ chart: XYChart) -> PositionedXYChart {
         var bIdx = 0
         for (seriesArrayIdx, s) in chart.series.enumerated() {
             guard s.type == .bar else { continue }
-            for i in 0..<s.data.count {
+            for i in 0..<min(s.data.count, catLabels.count) {
                 let cy = catScale(i)
                 let groupTop = cy - groupH / 2
                 let by = groupTop + Double(bIdx) * (singleBarH + XY.barGroupGap)
@@ -220,8 +220,9 @@ private func _layoutHorizontal(_ chart: XYChart) -> PositionedXYChart {
     var lineIdx = 0
     for (seriesIdx, s) in chart.series.enumerated() {
         guard s.type == .line else { continue }
-        let points = s.data.enumerated().map { i, v in
-            LinePoint(x: valueScale(v), y: catScale(i), value: v, label: catLabels[i])
+        let points = (0..<min(s.data.count, catLabels.count)).map { i -> LinePoint in
+            let v = s.data[i]
+            return LinePoint(x: valueScale(v), y: catScale(i), value: v, label: catLabels[i])
         }
         lines.append(PositionedLine(points: points, seriesIndex: lineIdx, colorIndex: colorMap[seriesIdx]))
         lineIdx += 1
@@ -330,7 +331,7 @@ private func _layoutBars(
     var bIdx = 0
     for (seriesArrayIdx, s) in chart.series.enumerated() {
         guard s.type == .bar else { continue }
-        for i in 0..<s.data.count {
+        for i in 0..<min(s.data.count, catLabels.count) {
             let cx = xScale(i)
             let groupLeft = cx - groupW / 2
             let bx = groupLeft + Double(bIdx) * (singleBarW + XY.barGroupGap)
@@ -356,8 +357,9 @@ private func _layoutLines(
     var lineIdx = 0
     for (seriesArrayIdx, s) in chart.series.enumerated() {
         guard s.type == .line else { continue }
-        let points = s.data.enumerated().map { i, v in
-            LinePoint(x: xScale(i), y: yScale(v), value: v, label: catLabels[i])
+        let points = (0..<min(s.data.count, catLabels.count)).map { i -> LinePoint in
+            let v = s.data[i]
+            return LinePoint(x: xScale(i), y: yScale(v), value: v, label: catLabels[i])
         }
         lines.append(PositionedLine(points: points, seriesIndex: lineIdx, colorIndex: colorMap[seriesArrayIdx]))
         lineIdx += 1

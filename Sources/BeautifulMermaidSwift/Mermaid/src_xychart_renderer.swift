@@ -60,8 +60,10 @@ public func renderXYChartSvg(
     let yVals = chart.horizontal
         ? chart.yAxis.ticks.map(\.y)
         : chart.gridLines.map(\.y1)
-    let xBase = xTickPositions.count > 1 ? abs(xTickPositions[1] - xTickPositions[0]) : plotArea.width / 6
-    let yBase = yVals.count > 1 ? abs(yVals[1] - yVals[0]) : plotArea.height / 6
+    let xBaseRaw = xTickPositions.count > 1 ? abs(xTickPositions[1] - xTickPositions[0]) : plotArea.width / 6
+    let yBaseRaw = yVals.count > 1 ? abs(yVals[1] - yVals[0]) : plotArea.height / 6
+    let xBase = (xBaseRaw.isFinite && abs(xBaseRaw) < 1e15) ? xBaseRaw : plotArea.width / 6
+    let yBase = (yBaseRaw.isFinite && abs(yBaseRaw) < 1e15) ? yBaseRaw : plotArea.height / 6
     let xGap = xBase / Double(max(1, Int((xBase / 20).rounded())))
     let yGap = yBase / Double(max(1, Int((yBase / 20).rounded())))
     let xAnchor = xTickPositions.first ?? plotArea.x
@@ -465,7 +467,10 @@ private func _formatTipValue(_ v: Double) -> String {
 
 private func _r(_ n: Double) -> String {
     let rounded = (n * 10).rounded() / 10
-    if rounded == rounded.rounded() { return String(Int(rounded)) }
+    if rounded.isFinite && abs(rounded) < 1e15 && rounded == rounded.rounded() {
+        return String(Int(rounded))
+    }
+    if !rounded.isFinite { return "0" }
     return String(format: "%.1f", rounded)
 }
 
