@@ -190,6 +190,17 @@ public class MermaidView: NSView {
     public override var intrinsicContentSize: NSSize {
         NSSize(width: diagramBounds.width, height: diagramBounds.height)
     }
+
+    /// `NSView` does not invalidate display automatically when its frame
+    /// changes. Without this override, a SwiftUI host that resizes the view
+    /// (e.g. when the window or container width changes) keeps showing the
+    /// diagram painted at the previous size — `draw(_:)` is never re-invoked.
+    /// The iOS branch above handles this in `layoutSubviews()`; this is the
+    /// macOS counterpart.
+    public override func setFrameSize(_ newSize: NSSize) {
+        super.setFrameSize(newSize)
+        needsDisplay = true
+    }
 }
 
 #endif
