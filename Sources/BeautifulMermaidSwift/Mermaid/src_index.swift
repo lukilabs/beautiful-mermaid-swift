@@ -78,6 +78,7 @@ private enum _DiagramRoutingType {
     case `class`
     case er
     case xychart
+    case piechart
 }
 
 private func _decodeXML(_ text: String) -> String {
@@ -109,6 +110,9 @@ private func detectDiagramType(_ text: String) -> _DiagramRoutingType {
     }
     if firstLine.hasPrefix("xychart") {
         return .xychart
+    }
+    if _isPieChartHeader(firstLine) {
+        return .piechart
     }
 
     return .flowchart
@@ -160,6 +164,10 @@ public func renderMermaidSVG(
         let chart = parseXYChart(lines)
         let positioned = layoutXYChart(chart, options)
         return renderXYChartSvg(positioned, colors, font, transparent, interactive: options.interactive ?? false)
+    case .piechart:
+        let chart = parsePieChart(lines)
+        let positioned = layoutPieChart(chart, options)
+        return renderPieChartSvg(positioned, colors, font, transparent)
     case .flowchart:
         let graph = try parseMermaid(decodedText)
         let positioned = try layoutGraphSync(graph, options)

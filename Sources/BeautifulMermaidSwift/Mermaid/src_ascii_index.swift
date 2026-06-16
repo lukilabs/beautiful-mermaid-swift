@@ -283,6 +283,7 @@ open class original_src_ascii_index {
         case `class`
         case er
         case xychart
+        case piechart
     }
 
     struct AsciiConfig {
@@ -350,6 +351,8 @@ open class original_src_ascii_index {
             return "er"
         case .xychart:
             return "xychart"
+        case .piechart:
+            return "piechart"
         case .flowchart:
             return "flowchart"
         }
@@ -400,6 +403,18 @@ open class original_src_ascii_index {
                 graphDirection: config.graphDirection
             )
             return renderXYChartAscii(text, mappedConfig, mappedColorMode, mappedTheme)
+
+        case .piechart:
+            let mappedColorMode = _mapColorMode(resolvedColorMode)
+            let mappedTheme = _mapTheme(theme, includeAccentBg: true)
+            let mappedConfig = original_src_ascii_types.AsciiConfig(
+                useAscii: config.useAscii,
+                paddingX: config.paddingX,
+                paddingY: config.paddingY,
+                boxBorderPadding: config.boxBorderPadding,
+                graphDirection: config.graphDirection
+            )
+            return renderPieChartAscii(text, mappedConfig, mappedColorMode, mappedTheme)
 
         case .flowchart:
             let parsed = try parseMermaid(text)
@@ -458,6 +473,9 @@ open class original_src_ascii_index {
         }
         if firstLine.hasPrefix("xychart") {
             return .xychart
+        }
+        if _isPieChartHeader(firstLine) {
+            return .piechart
         }
 
         return .flowchart

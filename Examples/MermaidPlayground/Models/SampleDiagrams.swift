@@ -376,6 +376,9 @@ public struct TestDiagrams {
         TestDiagram(id: "xychart-7-numeric-x", category: "xychart", name: "Numeric X-Axis",
                     source: "xychart-beta\n    title \"Distribution Curve\"\n    x-axis 0 --> 100\n    line [4, 7, 13, 21, 31, 43, 58, 71, 84, 91, 95, 91, 84, 71, 58, 43, 31, 21, 13, 7, 4]"),
         TestDiagram(id: "xychart-10-burndown", category: "xychart", name: "Sprint Burndown",
-                    source: "xychart-beta\n    title \"Sprint Burndown\"\n    x-axis [D1, D2, D3, D4, D5, D6, D7, D8, D9, D10]\n    y-axis \"Story Points\" 0 --> 80\n    line [72, 65, 58, 50, 45, 38, 30, 22, 12, 0]\n    line [72, 65, 58, 50, 43, 36, 29, 22, 14, 0]")
+                    source: "xychart-beta\n    title \"Sprint Burndown\"\n    x-axis [D1, D2, D3, D4, D5, D6, D7, D8, D9, D10]\n    y-axis \"Story Points\" 0 --> 80\n    line [72, 65, 58, 50, 45, 38, 30, 22, 12, 0]\n    line [72, 65, 58, 50, 43, 36, 29, 22, 14, 0]"),
+        // Pie Chart
+        TestDiagram(id: "piechart-1-colors", category: "piechart", name: "Favorite Colors",
+                    source: "pie title Breakdown of Favorite Colors\n    \"Red\" : 30\n    \"Blue\" : 25\n    \"Green\" : 20\n    \"Yellow\" : 15\n    \"Other\" : 10")
     ]
 }

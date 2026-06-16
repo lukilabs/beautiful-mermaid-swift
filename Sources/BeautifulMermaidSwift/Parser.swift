@@ -44,6 +44,10 @@ public enum MermaidParser {
             let chart = parseXYChart(lines)
             return MermaidGraph(type: .xyChart, payload: chart)
         }
+        if _isPieChartHeader(firstLine) {
+            let chart = parsePieChart(lines)
+            return MermaidGraph(type: .pieChart, payload: chart)
+        }
 
         // Flowchart + stateDiagram-v2 share the same parser entry in the original TS.
         let parsed = try parseMermaid(decoded)
