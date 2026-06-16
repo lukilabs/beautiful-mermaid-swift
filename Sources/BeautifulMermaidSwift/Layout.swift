@@ -69,6 +69,17 @@ public struct GraphLayout {
                 height: positioned.height,
                 content: .xyChart(positioned)
             )
+        case .pieChart:
+            guard let chart = graph.payload as? PieChart else {
+                return PositionedGraph(diagram: graph, content: .pieChart(PositionedPieChart.empty))
+            }
+            let positioned = layoutPieChart(chart)
+            return PositionedGraph(
+                diagram: graph,
+                width: positioned.width,
+                height: positioned.height,
+                content: .pieChart(positioned)
+            )
         }
     }
 }

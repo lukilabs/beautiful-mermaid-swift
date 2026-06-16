@@ -8,6 +8,7 @@ public enum DiagramType: String, CaseIterable, Sendable {
     case classDiagram
     case erDiagram
     case xyChart
+    case pieChart
 }
 
 /// The parsed graph model for flowcharts and state diagrams.
@@ -21,6 +22,7 @@ public enum DiagramPayload: Sendable {
     case classDiagram(ClassDiagram)
     case erDiagram(ErDiagram)
     case xyChart(XYChart)
+    case pieChart(PieChart)
 }
 
 public struct MermaidGraph: @unchecked Sendable {
@@ -50,6 +52,8 @@ public struct MermaidGraph: @unchecked Sendable {
             return (payload as? ErDiagram).map { .erDiagram($0) }
         case .xyChart:
             return (payload as? XYChart).map { .xyChart($0) }
+        case .pieChart:
+            return (payload as? PieChart).map { .pieChart($0) }
         }
     }
 
@@ -99,6 +103,7 @@ public enum PositionedContent: Sendable {
         relationships: [PositionedErRelationship]
     )
     case xyChart(PositionedXYChart)
+    case pieChart(PositionedPieChart)
 }
 
 public struct PositionedGraph: Sendable {
@@ -142,6 +147,8 @@ public struct PositionedGraph: Sendable {
             self.content = .erDiagram(entities: [], relationships: [])
         case .xyChart:
             self.content = .xyChart(.empty)
+        case .pieChart:
+            self.content = .pieChart(.empty)
         }
     }
 
@@ -235,6 +242,13 @@ public struct PositionedGraph: Sendable {
     public var xyChartData: PositionedXYChart? {
         switch content {
         case .xyChart(let chart): return chart
+        default: return nil
+        }
+    }
+
+    public var pieChartData: PositionedPieChart? {
+        switch content {
+        case .pieChart(let chart): return chart
         default: return nil
         }
     }

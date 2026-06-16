@@ -46,6 +46,8 @@ public final class DiagramRenderer {
             _drawFlowOrState(positioned, in: context, bounds: bounds)
         case .xyChart:
             _drawXYChart(positioned, in: context, bounds: bounds)
+        case .pieChart:
+            _drawPieChart(positioned, in: context, bounds: bounds)
         }
     }
 

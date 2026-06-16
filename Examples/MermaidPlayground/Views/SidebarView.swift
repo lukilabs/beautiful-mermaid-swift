@@ -82,7 +82,7 @@ struct SidebarView: View {
 
     private var testDiagramPicker: some View {
         Menu {
-            ForEach(["flowchart", "state", "sequence", "class", "er", "xychart"], id: \.self) { category in
+            ForEach(["flowchart", "state", "sequence", "class", "er", "xychart", "piechart"], id: \.self) { category in
                 let diagrams = TestDiagrams.diagrams(for: category)
                 if !diagrams.isEmpty {
                     Menu(category.capitalized) {

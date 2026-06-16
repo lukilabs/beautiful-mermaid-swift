@@ -19,7 +19,7 @@ BeautifulMermaid is a native Swift port of [beautiful-mermaid](https://github.co
 
 ## Features
 
-- **6 diagram types** — Flowcharts, State, Sequence, Class, ER, and XY Charts
+- **7 diagram types** — Flowcharts, State, Sequence, Class, ER, XY, and Pie Charts
 - **Multiple output formats** — Native images (`UIImage` / `NSImage`), SVG, and ASCII art
 - **17 built-in themes** — Tokyo Night, Dracula, Nord, Gruvbox, and more
 - **VS Code theme import** — Load any Shiki/VS Code theme via `ShikiTheme`
@@ -614,6 +614,17 @@ xychart-beta
     y-axis "Revenue (in $)" 4000 --> 11000
     bar [5000, 6000, 7500, 8200, 9800, 10500]
     line [5000, 6000, 7500, 8200, 9800, 10500]
+```
+
+### Pie Charts
+
+```
+pie title Breakdown of Favorite Colors
+    "Red" : 30
+    "Blue" : 25
+    "Green" : 20
+    "Yellow" : 15
+    "Other" : 10
 ```
 
 ### Parser Limitations
